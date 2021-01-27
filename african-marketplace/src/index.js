@@ -19,9 +19,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(<>
 {/* <Provider store ={store}> */}
-  {/* <Router> */}
+  <Router>
     <App />
-  {/* </Router> */}
+  </Router>
  {/* </Provider> */}
 </>
 ,
