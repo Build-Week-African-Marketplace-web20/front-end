@@ -56,16 +56,16 @@ const Form = (props) => {
     <section className="wrapper style5" style={sectionStyle}>
       <form onSubmit={submit} style={formStyle}>
 
-        {username ? (
+        {username &&
           <>
             <label htmlFor="username">Username</label>
             <br />
             <span style={{color: 'red'}}>{errors.username}</span>
             <input onChange={change} value={form.username} id="username" type="text" />
           </>
-        ) : null}
+        }
 
-        {email ? (
+        {email &&
           <>
             <br />
             <label htmlFor="email">Email</label>
@@ -73,9 +73,9 @@ const Form = (props) => {
             <span style={{color: 'red'}}>{errors.email}</span>
             <input onChange={change} value={form.email} id="email" type="email" />
           </>
-        ) : null}
+        }
 
-        {password ? (
+        {password &&
           <>
             <br />
             <label htmlFor="password">Password</label>
@@ -83,7 +83,7 @@ const Form = (props) => {
             <span style={{color: 'red'}}>{errors.password}</span>
             <input onChange={change} id="password" value={form.password} type="password" />
           </>
-        ) : null}
+        }
 
         <br />
 
