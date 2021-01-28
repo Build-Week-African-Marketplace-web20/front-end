@@ -11,4 +11,43 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.storeCard{
+  width: 200px;
+  margin: 5px;
+  font-size: .45em;
+  
+}
+.card-header{
+  font-size: 1rem;
+  max-height: 60px;
+  min-height: 60px;
+}
+.card-body{
+  padding: 0 !important;
+}
+.card-subtitle{ 
+  font-size:.75rem;
+}
+.card-footer{
+  min-height: 60px;
+  max-height: 60px;
+  line-height: 1.1;
+}
+.store{
+  display:flex;
+  flex-flow: column nowrap;
+}
+.inventoryContainer{
+  /* background-color: slategrey; */
+  margin: 5px;
+  color: black;
+  border-radius: 5%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.inventoryItems{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
 
