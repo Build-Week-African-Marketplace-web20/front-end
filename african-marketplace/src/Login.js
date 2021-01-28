@@ -3,7 +3,10 @@ import Form from './components/Form';
 
 const Login = () => {
   return (
-    <Form />
+  <>
+    {/* pass the prop something truthy to enable it */}
+    <Form username={1} password={1} />
+  </>
   )
 };
 export default Login;

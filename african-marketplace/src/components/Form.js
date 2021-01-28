@@ -2,25 +2,23 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
 
-import '../form.css';
+import '../template.css';
 
+// requirements
 const schema = yup.object().shape({
   username: yup.string().required('Username is required').min(3, "Username needs to be at least 3 characters"),
+  email: yup.string().required('An email is required'),
   password: yup.string().required('Password is required').min(5, "Password must be at least 5 characters"),
 });
 
 
-const Form = () => {
+const Form = (props) => {
+  // these props are only used for enabling their display on the page. See the jsx
+  const { username, email, password } = props;
 
   // state
-  const [form, setForm] = useState({
-    username: '',
-    password: ''
-  });
-  const [errors, setErrors] = useState({
-    username: '',
-    password: ''
-  })
+  const [form, setForm] = useState({username: '', email: '', password: ''});
+  const [errors, setErrors] = useState({username: '', email: '', password: ''});
   const [disabled, setDisabled] = useState(true);
 
   // functions
@@ -57,17 +55,35 @@ const Form = () => {
   return (
     <section className="wrapper style5" style={sectionStyle}>
       <form onSubmit={submit} style={formStyle}>
-        <label htmlFor="username">Username</label>
-        <br />
-        <span style={{color: 'red'}}>{errors.username}</span>
-        <input onChange={change} value={form.username} id="username" type="text" />
 
-        <br />
+        {username ? (
+          <>
+            <label htmlFor="username">Username</label>
+            <br />
+            <span style={{color: 'red'}}>{errors.username}</span>
+            <input onChange={change} value={form.username} id="username" type="text" />
+          </>
+        ) : null}
 
-        <label htmlFor="password">Password</label>
-        <br />
-        <span style={{color: 'red'}}>{errors.password}</span>
-        <input onChange={change} id="password" value={form.password} type="password" />
+        {email ? (
+          <>
+            <br />
+            <label htmlFor="email">Email</label>
+            <br />
+            <span style={{color: 'red'}}>{errors.email}</span>
+            <input onChange={change} value={form.email} id="email" type="email" />
+          </>
+        ) : null}
+
+        {password ? (
+          <>
+            <br />
+            <label htmlFor="password">Password</label>
+            <br />
+            <span style={{color: 'red'}}>{errors.password}</span>
+            <input onChange={change} id="password" value={form.password} type="password" />
+          </>
+        ) : null}
 
         <br />
 
