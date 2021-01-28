@@ -1,10 +1,10 @@
 //libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {applyMiddleware, createStore} from 'redux'
-import {Provider} from 'react-redux'
-import {logger} from 'redux-logger'
-import thunk from 'redux-thunk'
+// import {applyMiddleware, createStore} from 'redux'
+// import {Provider} from 'react-redux'
+// import {logger} from 'redux-logger'
+// import thunk from 'redux-thunk'
 import {BrowserRouter as Router} from 'react-router-dom'
 
 //components
