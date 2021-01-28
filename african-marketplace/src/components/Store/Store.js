@@ -1,4 +1,5 @@
 //[ ] This component will house all of the StoreCards on display
+//[ ] Install 'spotlight' element for showcasing selected items.
 import React from 'react'
 import StoreCard from './StoreCard'
 
@@ -21,6 +22,14 @@ const mockupData = [
                     price: "$5,000,000",
                     category:"Vehicles",
                     location: "Spain"
+                },{
+                    id: 2,
+                    ownerName: "George Russell",
+                    productName: "Used Cup",
+                    description: "Drank from this atleast twice",
+                    price: "$5.00",
+                    category:"Kitchenware",
+                    location: "Kentucky"
                 }
         ]},{   
         name: "Marc Marquez",
@@ -52,11 +61,11 @@ const mockupData = [
                 },{
                     id: 4,
                     ownerName: "Marc Marquez",
-                    productName: "MotoGP Motorcycle",
-                    description: "Bring ear protection because this thing SCREAMS down the road",
-                    price: "$5,000,000",
-                    category:"Food",
-                    location: "Italy"
+                    productName: "Tricycle",
+                    description: "Great for three wheeling",
+                    price: "$50",
+                    category:"Toys",
+                    location: "Germany"
                 }
         ]}
     
