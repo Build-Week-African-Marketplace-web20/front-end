@@ -1,12 +1,20 @@
 import React from 'react';
 import Form from './components/Form';
+import {connect} from 'react-redux'
+import {getLogin} from './redux/actions/loginActions'
 
-const Login = () => {
+const Login = ({getLogin}) => {
+
+
   return (
   <>
     {/* pass the prop something truthy to enable it */}
-    <Form username={1} password={1} />
+    {/* <Form username={1} password={1} getLogin={getLogin}/> */}
   </>
   )
 };
-export default Login;
+const mapStateToProps = (state) => {
+  return state
+}
+const mapDispatchToProps = {getLogin}
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

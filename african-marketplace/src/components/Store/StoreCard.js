@@ -10,7 +10,7 @@ export const StoreCard = (props) => {
 
 const {ownerName, productName, price, description, location, category} = props.item
 
-console.log(props.item)
+// console.log(props.item)
     return(
         <div className="storeCard">
             <Card color="primary">

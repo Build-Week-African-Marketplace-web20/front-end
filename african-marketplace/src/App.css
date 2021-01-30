@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 .storeCard{
   width: 200px;
@@ -24,6 +24,7 @@
 }
 .card-body{
   padding: 0 !important;
+
 }
 .card-subtitle{ 
   font-size:.75rem;
@@ -38,12 +39,13 @@
   flex-flow: column nowrap;
 }
 .inventoryContainer{
-  /* background-color: slategrey; */
+  background-color: slategrey;
   margin: 5px;
   color: black;
-  border-radius: 5%;
+
   display: flex;
   flex-flow: column nowrap;
+  border: 1px solid white;
 }
 .inventoryItems{
   display: flex;
