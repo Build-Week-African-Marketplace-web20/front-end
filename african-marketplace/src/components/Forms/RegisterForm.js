@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
 //seth imports
-import {getLogin} from '../redux/actions/loginActions'
+import {createUser} from '../../redux/actions/loginActions'
 import {connect} from 'react-redux'
-import { StaticRouter } from 'react-router-dom';
+import {useHistory} from 'react-router-dom'
 
 // import '../template.css';
 
@@ -16,16 +16,17 @@ const schema = yup.object().shape({
 });
 
 
-const Form = (props) => {
+  const RegisterForm = ({props, createUser}) => {
   // these props are only used for enabling their display on the page. See the jsx
-  const { username, email, password, getLogin } = props;
+  
 
   // state
-  const [form, setForm] = useState({username: '', email: '', password: ''});
-  const [errors, setErrors] = useState({username: '', email: '', password: ''});
+  const [form, setForm] = useState({username: 'owner', password: 'password', owner:true});
+  const [errors, setErrors] = useState({username: '', password: ''});
   const [disabled, setDisabled] = useState(true);
 
   // functions
+  const history = useHistory();
   const setFormErrors = (id, value) => {
     yup.reach(schema, id).validate(value)
       .then(() => setErrors({ ...errors, [id]: '' }))
@@ -38,6 +39,8 @@ const Form = (props) => {
   };
   const submit = (event) => {
     event.preventDefault();
+    createUser();
+    history.push("/market")
     // axios.post("/", form);
   };
 
@@ -64,38 +67,20 @@ const Form = (props) => {
     <section className="wrapper style5" style={sectionStyle}>
       <form onSubmit={submit} style={formStyle}>
 
-        {username &&
+        <h4>Register</h4>
           <>
-            <label htmlFor="username">Username</label>
-            <br />
-            <span style={{color: 'red'}}>{errors.username}</span>
-            <input onChange={change} value={form.username} id="username" type="text" />
+            <label htmlFor="username">Username
+              <span style={{color: 'red'}}>{errors.username}</span>
+              <input onChange={change} value={form.username} id="username" type="text" />
+              </label>
           </>
-        }
-
-        {email &&
           <>
-            <br />
-            <label htmlFor="email">Email</label>
-            <br />
-            <span style={{color: 'red'}}>{errors.email}</span>
-            <input onChange={change} value={form.email} id="email" type="email" />
+            <label htmlFor="password">Password
+              <span style={{color: 'red'}}>{errors.password}</span>
+              <input onChange={change} id="password" value={form.password} type="password" />
+              </label>
           </>
-        }
-
-        {password &&
-          <>
-            <br />
-            <label htmlFor="password">Password</label>
-            <br />
-            <span style={{color: 'red'}}>{errors.password}</span>
-            <input onChange={change} id="password" value={form.password} type="password" />
-          </>
-        }
-
-        <br />
-
-        <input type="submit" value="Submit" disabled={disabled} />
+        <button> New Submit</button>
       </form>
     </section>
   )
@@ -103,10 +88,12 @@ const Form = (props) => {
 
 
 
-//Redux
-// const mapStateToProps = (state) =>{return{state}}
-// const mapDispatchToProps = {getLogin}
+// Redux
+const mapStateToProps = (state) =>{
+  return{state}
+}
+const mapDispatchToProps = {createUser}
 
 
 
-export default  Form ;
+export default  connect(mapStateToProps, mapDispatchToProps) (RegisterForm) ;
