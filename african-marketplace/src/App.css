@@ -11,6 +11,7 @@
   font-size: calc(10px + 2vmin);
   color: black;
 }
+
 .storeCard{
   width: 200px;
   margin: 5px;
@@ -49,7 +50,7 @@
 }
 .inventoryItems{
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: space-around;
 }
 

@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import {connect} from 'react-redux'
 import {Link, Route} from 'react-router-dom'
 import {
     Collapse,
@@ -12,12 +13,15 @@ import {
   } from 'reactstrap';
 
 
-export const NavBar = () => {
+export const NavBar = ({isLoggedIn}) => {
    
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
     
+    // useEffect(()=>{
+    // },[])
+
     return(
     <>
     <Navbar color="primary" light expand="md">
@@ -32,7 +36,14 @@ export const NavBar = () => {
             </NavItem>
             <NavItem>
                 <NavLink>
+                  {(
+                    {isLoggedIn} 
+                    ? 
                     <Link className="text-warning" to="/register">Register</Link>
+                    : 
+                    <Link className="text-warning" to="/register">Inventory</Link>
+                  )}
+                    
                 </NavLink>
             </NavItem>
             <NavItem>
@@ -50,4 +61,10 @@ export const NavBar = () => {
     )
 }
 
-export default NavBar;
+const mapStateToProps=(state)=>{
+  return{
+    isLoggedIn: state.isLoggedIn
+  }
+}
+
+export default connect(mapStateToProps)(NavBar);
