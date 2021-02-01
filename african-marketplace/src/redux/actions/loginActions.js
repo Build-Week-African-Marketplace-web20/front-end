@@ -39,8 +39,8 @@ export const getLogin = (form) => (dispatch) => {
     axios.post( "https://reqres.in/api/login", form)
         .then(res=>{
             console.log("Login Success: ", res)
-            localStorage.setItem("token", "placeholder2")
-            dispatch({type:LOGIN_SUCCESS, payload: res})
+            localStorage.setItem("token", res.data.token)
+            dispatch({type:LOGIN_SUCCESS, payload: res.data.token})
             
         })
         .catch(err=>{

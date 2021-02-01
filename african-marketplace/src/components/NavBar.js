@@ -13,14 +13,13 @@ import {
   } from 'reactstrap';
 
 
-export const NavBar = ({isLoggedIn}) => {
+export const NavBar = ({ownerToken}) => {
    
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
     
-    // useEffect(()=>{
-    // },[])
+   const token = localStorage.getItem("token")
 
     return(
     <>
@@ -36,19 +35,22 @@ export const NavBar = ({isLoggedIn}) => {
             </NavItem>
             <NavItem>
                 <NavLink>
-                  {(
-                    {isLoggedIn} 
-                    ? 
-                    <Link className="text-warning" to="/register">Register</Link>
-                    : 
+                  {(token ? 
                     <Link className="text-warning" to="/register">Inventory</Link>
+                    : 
+                    <Link className="text-warning" to="/register">Register</Link>
                   )}
                     
                 </NavLink>
             </NavItem>
             <NavItem>
                 <NavLink>
+                {(token ? 
                     <Link className="text-warning" to="/login">Login</Link>
+                    : 
+                    <Link className="text-warning" to="/login">Logout</Link>
+                  )}
+                    
                 </NavLink>
             </NavItem>
           </Nav>
@@ -63,7 +65,7 @@ export const NavBar = ({isLoggedIn}) => {
 
 const mapStateToProps=(state)=>{
   return{
-    isLoggedIn: state.isLoggedIn
+    ownerToken: state.data.ownerToken
   }
 }
 
