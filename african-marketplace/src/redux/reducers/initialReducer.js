@@ -36,7 +36,7 @@ export const initialReducer = (state=initialState, action ) => {
                 isLoading: false,
                 isLoggedIn: true,
                 data:{...state.data,
-                    owner: action.payload
+                    ownerToken: action.payload
                 }
             }
         case LOGIN_FAILURE:

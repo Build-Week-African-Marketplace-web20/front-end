@@ -18,7 +18,7 @@ const headers = {
 export const createUser = (form)=>(dispatch) => {
     console.log("createUser Action fired")
     dispatch({type:CREATE_USER_START})
-    axios.post("https://african-marketplace-backend.herokuapp.com/users",  form)
+    axios.post("https://african-marketplace-backend.herokuapp.com/register",  form)
         .then(res=>{
             console.log(res)
             localStorage.setItem("token", "PLACEHOLDER")
@@ -35,15 +35,16 @@ export const createUser = (form)=>(dispatch) => {
 
 export const getLogin = (form) => (dispatch) => {
     dispatch({type:LOGIN_START})
-    axios.post( "https://african-marketplace-backend.herokuapp.com/users",  form )
+    // axios.post( "https://african-marketplace-backend.herokuapp.com/login",  form )
+    axios.post( "https://reqres.in/api/login", form)
         .then(res=>{
             console.log("Login Success: ", res)
-            localStorage.setItem("token", "token")
-            dispatch({type:LOGIN_SUCCESS, payload: res})
+            localStorage.setItem("token", res.data.token)
+            dispatch({type:LOGIN_SUCCESS, payload: res.data.token})
             
         })
         .catch(err=>{
             console.log("Login Failure: ", err)
-            dispatch({type:LOGIN_FAILURE , payload: err.message})
+            dispatch({type:LOGIN_FAILURE , payload: err})
         })
 }

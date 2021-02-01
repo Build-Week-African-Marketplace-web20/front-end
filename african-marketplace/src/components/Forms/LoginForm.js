@@ -11,7 +11,6 @@ import {useHistory} from 'react-router-dom'
 // requirements
 const schema = yup.object().shape({
   username: yup.string().required('Username is required').min(3, "Username needs to be at least 3 characters"),
-  email: yup.string().required('An email is required'),
   password: yup.string().required('Password is required').min(5, "Password must be at least 5 characters"),
 });
 
@@ -21,8 +20,8 @@ const schema = yup.object().shape({
   
 
   // state
-  const [form, setForm] = useState({username: 'owner', password: 'password'});
-  const [errors, setErrors] = useState({username: '', email: '', password: ''});
+  const [form, setForm] = useState({username: 'eve.holt@reqres.in', password: 'cityslicka'});
+  const [errors, setErrors] = useState({username: '', password: ''});
   const [disabled, setDisabled] = useState(true);
 
   // functions
@@ -39,7 +38,7 @@ const schema = yup.object().shape({
   };
   const submit = (event) => {
     event.preventDefault();
-    getLogin();
+    getLogin(form);
     history.push("/market")
     // axios.post("/", form);
   };

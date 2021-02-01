@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import {connect} from 'react-redux'
 import {Link, Route} from 'react-router-dom'
 import {
     Collapse,
@@ -12,12 +13,14 @@ import {
   } from 'reactstrap';
 
 
-export const NavBar = () => {
+export const NavBar = ({ownerToken}) => {
    
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => setIsOpen(!isOpen);
     
+   const token = localStorage.getItem("token")
+
     return(
     <>
     <Navbar color="primary" light expand="md">
@@ -32,12 +35,22 @@ export const NavBar = () => {
             </NavItem>
             <NavItem>
                 <NavLink>
+                  {(token ? 
+                    <Link className="text-warning" to="/register">Inventory</Link>
+                    : 
                     <Link className="text-warning" to="/register">Register</Link>
+                  )}
+                    
                 </NavLink>
             </NavItem>
             <NavItem>
                 <NavLink>
+                {(token ? 
                     <Link className="text-warning" to="/login">Login</Link>
+                    : 
+                    <Link className="text-warning" to="/login">Logout</Link>
+                  )}
+                    
                 </NavLink>
             </NavItem>
           </Nav>
@@ -50,4 +63,10 @@ export const NavBar = () => {
     )
 }
 
-export default NavBar;
+const mapStateToProps=(state)=>{
+  return{
+    ownerToken: state.data.ownerToken
+  }
+}
+
+export default connect(mapStateToProps)(NavBar);
