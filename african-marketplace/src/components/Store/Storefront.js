@@ -7,6 +7,7 @@ import {Button} from 'reactstrap'
 import Store from './Store'
 import { connect } from 'react-redux'
 import { getInventory, getOwners, getOwnerInventory, getItems } from '../../redux/actions/ownersActions'
+import  TempAddForm  from '../Forms/TempAddForm'
 
 export const Storefront = ({owners, siteInventory, getOwnerInventory, getOwners, getItems}) => {
 
@@ -14,27 +15,31 @@ export const Storefront = ({owners, siteInventory, getOwnerInventory, getOwners,
     useEffect(()=>{
         getOwners()
         getItems();
-        console.log("UE Fired, Storefront:")
+        console.log("UE Fired, Storefront:", owners)
     }, [])
-    // useEffect(()=>{
-    //     ownerList.forEach(owner=>{
-    //         getInventory(owner.id)
-    //     })
-    // }, [ownerList])
-
+    
+    
     return(
         <div>
+            <TempAddForm />
             <p>Available Stores:</p>
             <div className="storeSelectorContainer">
+                {}
                 {owners && owners.map(
-                    owner=> (
+                    owner => (
                         <Button 
-                        key={owner.id}
-                        onClick={()=>{getOwnerInventory(owner.id)}}>{owner.username}</Button>
+                            key={owner.id}
+                            onClick={getOwnerInventory(owner.id)}>
+                            {owner.username}</Button>
                         ))}
                 </div>
+
             {/* pass in prop that holds filtered list  */}
-            <Store inventory={siteInventory}/>
+            {owners && owners.map(
+                    owner => (
+                        
+                        <Store ownerId={owner.id}/>
+                        ))}
         </div>
     )
 }
@@ -45,5 +50,5 @@ const mapStateToProps = (state) =>{
 
     }
 }
-const mapDispatchToProps = {getInventory, getOwners, getOwnerInventory, getItems}
+const mapDispatchToProps = {getInventory, getOwnerInventory, getOwners, getItems}
 export default connect(mapStateToProps,mapDispatchToProps) (Storefront);

@@ -41,7 +41,8 @@ export const getLogin = (form) => (dispatch) => {
     axios.post( "https://african-marketplace-backend.herokuapp.com/login",  form )
         .then(res=>{
             console.log("Login Success: ", res)
-            dispatch({type:LOGIN_SUCCESS, payload: res})
+            localStorage.setItem("token", res.data.message)
+            dispatch({type:LOGIN_SUCCESS, payload: res.data})
             
         })
         .catch(err=>{

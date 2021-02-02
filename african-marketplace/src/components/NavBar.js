@@ -19,8 +19,9 @@ export const NavBar = ({isLoading, data}) => {
    
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
-    const [status, setStatus] = useState(false)
-    console.log(isLoading)
+    
+    const token = localStorage.getItem("token")
+
 
 
 
@@ -38,7 +39,7 @@ export const NavBar = ({isLoading, data}) => {
             </NavItem>
             <NavItem>
                 {/* <NavLink> */}
-                  {(isLoading ? 
+                  {(token ? 
                     <Link className="text-warning" to="/inventory">Inventory</Link>
                     : 
                     <Link className="text-warning" to="/register">Register</Link>
@@ -48,7 +49,7 @@ export const NavBar = ({isLoading, data}) => {
             </NavItem>
             <NavItem>
                 {/* <NavLink> */}
-                {(isLoading ? 
+                {(token ? 
                     <Link 
                       className="text-warning" 
                       to="/login" 

@@ -2,7 +2,7 @@
 //[ ] Install 'spotlight' element for showcasing selected items.
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { getInventory, getOwners } from '../../redux/actions/ownersActions'
+import { getOwnerInventory, getInventory, getOwners } from '../../redux/actions/ownersActions'
 import StoreCard from './StoreCard'
 
 const mockupData = [
@@ -77,46 +77,61 @@ console.log(mockupData)
 
 
 
-export const Store = ({owners, inventory, getOwners, getInventory}) => {
+export const Store = ({props, inventory,ownerInventory, storeInventory, getOwnerInventory}) => {
     //place this where mock is when props setup
     const [shownInventory, setShownInventory] = useState()
-    console.log()
+    // console.log()
+
+    // const formatData = () => {
+    //     const formattedData = [];
+    //     (inventory && inventory.map( (item) =>(
+    //         formattedData.push(item.id)
+    //     )))
+    //     return(console.log(formattedData))
+    // }
+    // formatData();
 
 
     return(
         <>
-        <p>Select an item to receive more details.</p>
-        <button onClick={()=>getOwners()}>Get Owners</button>
+        <p>Store Component</p>
+        
         <div className="store">
             {/* Create a store-line for each owner in the API */}
-        {(shownInventory) && shownInventory.map( ( owner ) =>
-            <div key={owner.name} className="inventoryContainer">
+           
+      
+        {(storeInventory) && storeInventory.map( ( item ) =>
+            <div key={item.id} className="inventoryContainer">
                 <div>
-                    <h5>{owner.name}'s Store</h5>
+                    <h5>{item.name}'s Store</h5>
                     </div>
                 <div className="inventoryItems">
-                    {/* Create item card for all items in owner inventory */}
-                    {
-                        owner.inventory.map(
-                        item => (
-                            <StoreCard key={item.id} item={item}/>
-                        )
-                    )}
+                    
+                       
+                            {/* <StoreCard key={owner.id} /> */}
+                        
+                    
                     </div>
                 </div>
-            ) }
+            )}
+
+                    
         </div>
         </>
         )
 }
-
-const mapStateToProps = (state) =>{
+//own props?
+const mapStateToProps = (state ) =>{
+    
     return{
         owners: state.ownerList,
-        inventory: state.siteInventory
+        inventory: state.siteInventory,
+        storeInventory: state.currentInventory,
+        ownerInventory: state.ownerInventory
     }
 }
 const mapDispatchToProps={getOwners, getInventory}
 
 export default connect (mapStateToProps,mapDispatchToProps)(Store);
 // export default Store;
+

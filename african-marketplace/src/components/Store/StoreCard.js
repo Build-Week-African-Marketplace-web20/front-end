@@ -8,18 +8,18 @@ import { Card, Button, CardHeader, CardFooter, CardBody,
 
 export const StoreCard = (props) => {
 
-const {ownerName, productName, price, description, location, category} = props.item
+const {name, price, description, location, category} = props.item
 
 // console.log(props.item)
     return(
         <div className="storeCard">
             <Card color="primary">
-                <CardHeader className="text-warning">{productName}</CardHeader>
+                <CardHeader className="text-warning">{name}</CardHeader>
                 <CardBody>
                     <CardTitle tag="h5">
                     Price: {price}</CardTitle>
                     <CardSubtitle tag="h6" className="mb-2 text-warning">
-                    Seller: {ownerName} </CardSubtitle>
+                    Seller:  </CardSubtitle>
                     {/* <CardText>
                     <div>
                         
@@ -29,10 +29,10 @@ const {ownerName, productName, price, description, location, category} = props.i
                         </div>
                         </CardText> */}
                 </CardBody>
-                {/* <CardFooter>
+                <CardFooter>
                 
                         {description}
-                </CardFooter> */}
+                </CardFooter>
             </Card>
         </div>
     )
