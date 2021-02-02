@@ -60,3 +60,11 @@
 .temp{
   background-color: white;
 }
+.addItemForm{
+  display:flex;
+  flex-flow: column nowrap;
+
+}
+h5{
+  color:white;
+}

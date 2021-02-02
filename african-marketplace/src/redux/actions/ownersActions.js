@@ -16,6 +16,10 @@ export const GET_OWNERS_INVENTORY_START = "GET_OWNERS_INVENTORY_START"
 export const GET_OWNERS_INVENTORY_SUCCESS = "GET_OWNERS_INVENTORY_SUCCESS"
 export const GET_OWNERS_INVENTORY_FAILURE = "GET_OWNERS_INVENTORY_FAILURE"
 
+export const ADD_ITEM_START = "ADD_ITEM_START"
+export const ADD_ITEM_SUCCESS = "ADD_ITEM_SUCCESS"
+export const ADD_ITEM_FAILURE = "ADD_ITEM_FAILURE"
+
 const headers = {
     Accept: "application/json",
     // Authorization: token
@@ -69,5 +73,16 @@ export const getItems = () => (dispatch) => {
         })
         .catch(err=>{
             dispatch({type:GET_ITEMS_FAILURE, payload: err.data})
+        })
+}
+
+export const addItem = (form) => (dispatch) => {
+    dispatch({type: ADD_ITEM_START})
+    axios.post("https://african-marketplace-backend.herokuapp.com/items", form)
+        .then(res => {
+            dispatch({type: ADD_ITEM_SUCCESS, payload: res})
+        })
+        .catch(err=>{
+            dispatch({type: ADD_ITEM_FAILURE, payload: err})
         })
 }
