@@ -77,10 +77,10 @@ console.log(mockupData)
 
 
 
-export const Store = ({props, inventory,ownerInventory, storeInventory, getOwnerInventory}) => {
+export const Store = (props) => {
     //place this where mock is when props setup
     const [shownInventory, setShownInventory] = useState()
-    // console.log()
+    console.log(props)
 
     // const formatData = () => {
     //     const formattedData = [];
@@ -100,7 +100,7 @@ export const Store = ({props, inventory,ownerInventory, storeInventory, getOwner
             {/* Create a store-line for each owner in the API */}
            
       
-        {(storeInventory) && storeInventory.map( ( item ) =>
+        {(props.ownerInventory) && props.ownerInventory.map( ( item ) =>
             <div key={item.id} className="inventoryContainer">
                 <div>
                     <h5>{item.name}'s Store</h5>
@@ -121,17 +121,17 @@ export const Store = ({props, inventory,ownerInventory, storeInventory, getOwner
         )
 }
 //own props?
-const mapStateToProps = (state ) =>{
+// const mapStateToProps = (state ) =>{
     
-    return{
-        owners: state.ownerList,
-        inventory: state.siteInventory,
-        storeInventory: state.currentInventory,
-        ownerInventory: state.ownerInventory
-    }
-}
-const mapDispatchToProps={getOwners, getInventory}
+//     return{
+//         owners: state.ownerList,
+//         inventory: state.siteInventory,
+//         storeInventory: state.currentInventory,
+//         ownerInventory: state.ownerInventory
+//     }
+// }
+// const mapDispatchToProps={getOwners, getInventory}
 
-export default connect (mapStateToProps,mapDispatchToProps)(Store);
-// export default Store;
+// export default connect (mapStateToProps,mapDispatchToProps)(Store);
+export default Store;
 

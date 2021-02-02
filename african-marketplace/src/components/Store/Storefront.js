@@ -38,12 +38,12 @@ export const Storefront = ({owners, siteInventory, getOwnerInventory, getOwners,
             {owners && owners.map(
                     owner => (
                         
-                        <Store ownerId={owner.id}/>
+                        <Store ownerInventory={siteInventory}/>
                         ))}
         </div>
     )
 }
-const mapStateToProps = (state, ownProps) =>{
+const mapStateToProps = (state) =>{
     return{
         owners: state.data.ownerList,
         siteInventory: state.data.siteInventory
