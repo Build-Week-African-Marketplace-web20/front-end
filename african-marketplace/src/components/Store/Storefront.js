@@ -43,7 +43,7 @@ export const Storefront = ({owners, siteInventory, getOwnerInventory, getOwners,
         </div>
     )
 }
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state, ownProps) =>{
     return{
         owners: state.data.ownerList,
         siteInventory: state.data.siteInventory

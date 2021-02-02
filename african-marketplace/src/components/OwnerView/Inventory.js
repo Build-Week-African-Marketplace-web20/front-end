@@ -15,7 +15,7 @@ export const Inventory = () => {
         <div className="temp">
             Controls</div>
             
-        
+        {/* map a storecard for each unique ID found in the inventory */}
         <StoreCard />
             
     </div>
