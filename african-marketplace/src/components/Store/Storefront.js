@@ -2,20 +2,48 @@
 //and a list of filters available on the left hand side.
 
 
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import {Button} from 'reactstrap'
 import Store from './Store'
+import { connect } from 'react-redux'
+import { getInventory, getOwners, getOwnerInventory, getItems } from '../../redux/actions/ownersActions'
 
+export const Storefront = ({owners, siteInventory, getOwnerInventory, getOwners, getItems}) => {
 
-export const Storefront = () => {
-
+    
+    useEffect(()=>{
+        getOwners()
+        getItems();
+        console.log("UE Fired, Storefront:")
+    }, [])
+    // useEffect(()=>{
+    //     ownerList.forEach(owner=>{
+    //         getInventory(owner.id)
+    //     })
+    // }, [ownerList])
 
     return(
         <div>
-            <p>Storefront on screen</p>
-            {/* PlaceHolder for filterList Component */}
-            <Store />
+            <p>Available Stores:</p>
+            <div className="storeSelectorContainer">
+                {owners && owners.map(
+                    owner=> (
+                        <Button 
+                        key={owner.id}
+                        onClick={()=>{getOwnerInventory(owner.id)}}>{owner.username}</Button>
+                        ))}
+                </div>
+            {/* pass in prop that holds filtered list  */}
+            <Store inventory={siteInventory}/>
         </div>
     )
 }
+const mapStateToProps = (state) =>{
+    return{
+        owners: state.data.ownerList,
+        siteInventory: state.data.siteInventory
 
-export default Storefront;
+    }
+}
+const mapDispatchToProps = {getInventory, getOwners, getOwnerInventory, getItems}
+export default connect(mapStateToProps,mapDispatchToProps) (Storefront);

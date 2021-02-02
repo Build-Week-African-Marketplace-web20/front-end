@@ -20,7 +20,10 @@ const schema = yup.object().shape({
   
 
   // state
-  const [form, setForm] = useState({username: 'eve.holt@reqres.in', password: 'cityslicka'});
+  // placeholder login details
+  //u: eve.holt@reqres.in
+  //p:
+  const [form, setForm] = useState({username: 'lambda345', password: 'lambda123'});
   const [errors, setErrors] = useState({username: '', password: ''});
   const [disabled, setDisabled] = useState(true);
 

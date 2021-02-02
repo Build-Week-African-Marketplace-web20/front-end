@@ -1,60 +1,159 @@
-import {GET_OWNERS_START, GET_OWNERS_SUCCESS, GET_OWNERS_FAILURE} from '../actions/ownersActions'
-import {LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, 
-    CREATE_USER_SUCCESS, CREATE_USER_START, CREATE_USER_FAILURE} from '../actions/loginActions'
+import {
+    GET_INVENTORY_START, GET_INVENTORY_SUCCESS, GET_INVENTORY_FAILURE, 
+    GET_OWNERS_START, GET_OWNERS_SUCCESS, GET_OWNERS_FAILURE,
+    GET_OWNERS_INVENTORY_START, GET_OWNERS_INVENTORY_SUCCESS, GET_OWNERS_INVENTORY_FAILURE,
+    GET_ITEMS_START, GET_ITEMS_SUCCESS, GET_ITEMS_FAILURE,
+    } from '../actions/ownersActions'
+import {
+    LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, 
+    LOGOUT_START, LOGOUT_SUCCESS, LOGOUT_FAILURE,
+    CREATE_USER_SUCCESS, CREATE_USER_START, CREATE_USER_FAILURE
+    } from '../actions/loginActions'
 
 const initialState = {
     isLoading: false,
     error: "",
     isLoggedIn: false,
-    data:{},
+    data:{
+        currentOwner: {},
+        currentInventory: [],
+        ownerList: []
+    },
 }
 
 export const initialReducer = (state=initialState, action ) => {
     switch(action.type){
-        case GET_OWNERS_START:
-            return{...state,
-                isLoading: true,
-            }
-        case GET_OWNERS_SUCCESS:
-            return{...state,
-                isLoading: false,
-                data:{...state.data,
-                    stores: action.payload
-                }
-            }
-        case GET_OWNERS_FAILURE:
-            return{...state,
-                isLoading: false,
-                error:action.payload
-            }
-        case LOGIN_START:
-            return{...state,
-                isLoading: true
-            }
-        case LOGIN_SUCCESS:
-            return{...state,
-                isLoading: false,
-                isLoggedIn: true,
-                data:{...state.data,
-                    ownerToken: action.payload
-                }
-            }
-        case LOGIN_FAILURE:
-            return{...state,
-                isLoading: false,
-                error:action.payload
-            }
         case CREATE_USER_START:
-            return{...state,
-            isLoading: true}
+            return{
+                ...state,
+                isLoading: true
+        }
         case CREATE_USER_SUCCESS:
             return {
                 ...state,
                 isLoading: false
             }
         case CREATE_USER_FAILURE:
-                return{...state,
-                isLoading: false,}
+                return{
+                    ...state,
+                isLoading: false
+            }
+        case LOGIN_START:
+            return{
+                ...state,
+                isLoading: true
+            }
+        case LOGIN_SUCCESS:
+            return{
+                ...state,
+                isLoading: false,
+                isLoggedIn: true,
+                data:{...state.data,
+                    owner: action.payload
+                }
+            }
+        case LOGIN_FAILURE:
+            return{
+                ...state,
+                isLoading: false,
+                error:action.payload
+            }
+        case LOGOUT_START:
+            return{
+                ...state,
+                isLoading: true
+            }
+        case LOGOUT_SUCCESS:
+            return{
+                ...state,
+                isLoading: false,
+                isLoggedIn: false,  
+            }
+       
+        case LOGOUT_FAILURE:
+            return{
+                ...state,
+                isLoading: false,
+                isLoggedIn: false,
+                error:action.payload
+            }
+        case GET_OWNERS_START:
+            return{
+                ...state,
+                isLoading: true,
+            }
+        case GET_OWNERS_SUCCESS:
+            return{
+                ...state,
+                isLoading: false,
+                data:{...state.data,
+                    ownerList: action.payload}
+                }
+        case GET_OWNERS_FAILURE:
+            return{
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }
+        case GET_ITEMS_START:
+            return{
+                ...state,
+                isLoading: true,
+            }
+        case GET_ITEMS_SUCCESS:
+            return{
+                ...state,
+                isLoading: false,
+                data: {
+                    ...state.data,
+                    siteInventory: action.payload
+                }
+            }
+        case GET_ITEMS_FAILURE:
+            return{
+                ...state,
+                isLoading: false,
+                error: action.payload
+            }
+        case GET_INVENTORY_START:
+            return{
+                ...state,
+                isLoading: true,
+            }
+        case GET_INVENTORY_SUCCESS:
+            return{
+                ...state,
+                isLoading: false,
+                data:{...state.data,
+                    currentInventory: action.payload
+                }
+            }
+        case GET_INVENTORY_FAILURE:
+            return{
+                ...state,
+                isLoading: false,
+                error:action.payload
+            }
+        case GET_OWNERS_INVENTORY_START:
+            return {
+                ...state,
+                isLoading: true
+            }
+        case GET_OWNERS_INVENTORY_SUCCESS:
+            return{
+                ...state,
+                isLoading: false,
+                data: {...state.data,
+                    ownersInventory: action.payload
+            }
+        }
+        case GET_OWNERS_INVENTORY_FAILURE:
+            return{
+                ...state,
+                isLoading: true,
+                error: action.payload
+            }
+
         default:
             return state
     

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+
 import * as yup from 'yup';
 //seth imports
-import {getLogin} from '../redux/actions/loginActions'
-import {connect} from 'react-redux'
-import { StaticRouter } from 'react-router-dom';
+
 
 // import '../template.css';
 

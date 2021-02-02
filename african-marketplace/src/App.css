@@ -53,4 +53,10 @@
   flex-flow: row wrap;
   justify-content: space-around;
 }
-
+.tempHolder{
+  display: flex;
+  flex-flow: row nowrap
+}
+.temp{
+  background-color: white;
+}
