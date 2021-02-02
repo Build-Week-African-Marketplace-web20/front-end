@@ -5,6 +5,10 @@ export const LOGIN_START = "LOGIN_START"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_FAILURE = "LOGIN_FAILURE"
 
+export const LOGOUT_START = "LOGOUT_START"
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS"
+export const LOGOUT_FAILURE = "LOGOUT_FAILURE"
+
 export const CREATE_USER_START = "CREATE_USER_START"
 export const CREATE_USER_SUCCESS = "CREATE_USER_SUCCESS"
 export const CREATE_USER_FAILURE = "CREATE_USER_FAILURE"
@@ -16,17 +20,15 @@ const headers = {
 }
 
 export const createUser = (form)=>(dispatch) => {
-    console.log("createUser Action fired")
+    console.log("createUser Action fired", form)
     dispatch({type:CREATE_USER_START})
     axios.post("https://african-marketplace-backend.herokuapp.com/register",  form)
         .then(res=>{
             console.log(res)
-            localStorage.setItem("token", "PLACEHOLDER")
             dispatch({type: CREATE_USER_SUCCESS, payload: res})
         })
         .catch(err=>{
             console.log(err)
-            localStorage.setItem("token", "FAILURE")
             dispatch({type:CREATE_USER_FAILURE, payload: err})
         })
 }
@@ -35,16 +37,29 @@ export const createUser = (form)=>(dispatch) => {
 
 export const getLogin = (form) => (dispatch) => {
     dispatch({type:LOGIN_START})
-    // axios.post( "https://african-marketplace-backend.herokuapp.com/login",  form )
-    axios.post( "https://reqres.in/api/login", form)
+    console.log("getLogin Fired: ",form)
+    axios.post( "https://african-marketplace-backend.herokuapp.com/login",  form )
         .then(res=>{
             console.log("Login Success: ", res)
-            localStorage.setItem("token", res.data.token)
-            dispatch({type:LOGIN_SUCCESS, payload: res.data.token})
+            dispatch({type:LOGIN_SUCCESS, payload: res})
             
         })
         .catch(err=>{
             console.log("Login Failure: ", err)
             dispatch({type:LOGIN_FAILURE , payload: err})
+        })
+}
+
+export const getLogout = ()=>(dispatch) =>{
+    dispatch({type:LOGOUT_START})
+    axios.get('https://african-marketplace-backend.herokuapp.com/logout')
+        .then(res=>{
+            console.log(res);
+            dispatch({type:LOGOUT_SUCCESS, payload: res})
+
+        })
+        .catch(err=>{
+            console.log(err);
+            dispatch({type:LOGOUT_FAILURE, payload: err})
         })
 }

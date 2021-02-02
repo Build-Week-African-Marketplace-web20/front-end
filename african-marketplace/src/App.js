@@ -6,6 +6,7 @@ import LoginForm from './components/Forms/LoginForm';
 import RegisterForm from './components/Forms/RegisterForm';
 
 import Storefront from './components/Store/Storefront'
+import Inventory from './components/OwnerView/Inventory'
 
 
 
@@ -20,7 +21,7 @@ function App() {
           <Route exact path="/market" component = {Storefront}/>
           <Route path="/login" component={LoginForm}/>
           <Route path="/register" component={RegisterForm}/>
-            
+          <Route path='/inventory' component={Inventory}/>
       
         </header> 
       </div>

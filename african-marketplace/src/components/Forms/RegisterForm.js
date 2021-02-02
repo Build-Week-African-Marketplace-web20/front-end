@@ -21,7 +21,7 @@ const schema = yup.object().shape({
   
 
   // state
-  const [form, setForm] = useState({username: 'owner', password: 'password', owner:true});
+  const [form, setForm] = useState({username: 'lambda345', password: 'lambda123', owner: true});
   const [errors, setErrors] = useState({username: '', password: ''});
   const [disabled, setDisabled] = useState(true);
 
@@ -39,7 +39,7 @@ const schema = yup.object().shape({
   };
   const submit = (event) => {
     event.preventDefault();
-    createUser();
+    createUser(form);
     history.push("/market")
     // axios.post("/", form);
   };

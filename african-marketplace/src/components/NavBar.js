@@ -1,3 +1,4 @@
+//[ ] figure out logout path
 import React, {useEffect, useState} from 'react'
 import {connect} from 'react-redux'
 import {Link, Route} from 'react-router-dom'
@@ -8,18 +9,20 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
+    // NavLink,
     NavbarText
   } from 'reactstrap';
+import { getLogout } from '../redux/actions/loginActions';
 
 
-export const NavBar = ({ownerToken}) => {
+export const NavBar = ({isLoading, data}) => {
    
     const [isOpen, setIsOpen] = useState(false);
-
     const toggle = () => setIsOpen(!isOpen);
-    
-   const token = localStorage.getItem("token")
+    const [status, setStatus] = useState(false)
+    console.log(isLoading)
+
+
 
     return(
     <>
@@ -29,29 +32,33 @@ export const NavBar = ({ownerToken}) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem >
-                <NavLink >
+                {/* <NavLink > */}
                     <Link className="text-warning" to="/market">Market</Link>
-                </NavLink>
+                {/* </NavLink> */}
             </NavItem>
             <NavItem>
-                <NavLink>
-                  {(token ? 
-                    <Link className="text-warning" to="/register">Inventory</Link>
+                {/* <NavLink> */}
+                  {(isLoading ? 
+                    <Link className="text-warning" to="/inventory">Inventory</Link>
                     : 
                     <Link className="text-warning" to="/register">Register</Link>
                   )}
                     
-                </NavLink>
+                {/* </NavLink> */}
             </NavItem>
             <NavItem>
-                <NavLink>
-                {(token ? 
-                    <Link className="text-warning" to="/login">Login</Link>
+                {/* <NavLink> */}
+                {(isLoading ? 
+                    <Link 
+                      className="text-warning" 
+                      to="/login" 
+                      onClick={()=>
+                        getLogout()}>Logout</Link>
                     : 
-                    <Link className="text-warning" to="/login">Logout</Link>
+                    <Link className="text-warning" to="/login">Login</Link>
                   )}
                     
-                </NavLink>
+                {/* </NavLink> */}
             </NavItem>
           </Nav>
           <NavbarText>Connecting you with your favorite shops since 2021</NavbarText>
@@ -65,7 +72,8 @@ export const NavBar = ({ownerToken}) => {
 
 const mapStateToProps=(state)=>{
   return{
-    ownerToken: state.data.ownerToken
+    isLoading: state.isLoading,
+    data: state.data
   }
 }
 
