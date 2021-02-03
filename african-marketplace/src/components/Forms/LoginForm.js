@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
+import '../../form.css';
 //seth imports
-import {getLogin} from '../../redux/actions/loginActions'
-import {connect} from 'react-redux'
-import {useHistory} from 'react-router-dom'
-
-// import '../template.css';
+import {getLogin} from '../../redux/actions/loginActions';
+import {connect} from 'react-redux';
+import {useHistory} from 'react-router-dom';
 
 // requirements
 const schema = yup.object().shape({
@@ -16,9 +15,6 @@ const schema = yup.object().shape({
 
 
   const LoginForm = ({getLogin}) => {
-  // these props are only used for enabling their display on the page. See the jsx
-  
-
   // state
   // placeholder login details
   //u: eve.holt@reqres.in
@@ -71,18 +67,17 @@ const schema = yup.object().shape({
 
         <h4>Login</h4>
           <>
-            <label htmlFor="username">Username
+            <label htmlFor="username">Username</label>
               <span style={{color: 'red'}}>{errors.username}</span>
               <input onChange={change} value={form.username} id="username" type="text" />
-              </label>
+              
           </>
           <>
-            <label htmlFor="password">Password
+            <label htmlFor="password">Password</label>
               <span style={{color: 'red'}}>{errors.password}</span>
               <input onChange={change} id="password" value={form.password} type="password" />
-              </label>
           </>
-        <button> New Submit</button>
+        <input type="submit" value="Submit" />
       </form>
     </section>
   )

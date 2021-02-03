@@ -6,8 +6,6 @@ import {createUser} from '../../redux/actions/loginActions'
 import {connect} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 
-// import '../template.css';
-
 // requirements
 const schema = yup.object().shape({
   username: yup.string().required('Username is required').min(3, "Username needs to be at least 3 characters"),
@@ -17,9 +15,6 @@ const schema = yup.object().shape({
 
 
   const RegisterForm = ({props, createUser}) => {
-  // these props are only used for enabling their display on the page. See the jsx
-  
-
   // state
   const [form, setForm] = useState({username: 'lambda345', password: 'lambda123', owner: true});
   const [errors, setErrors] = useState({username: '', password: ''});
@@ -69,18 +64,16 @@ const schema = yup.object().shape({
 
         <h4>Register</h4>
           <>
-            <label htmlFor="username">Username
+            <label htmlFor="username">Username</label>
               <span style={{color: 'red'}}>{errors.username}</span>
               <input onChange={change} value={form.username} id="username" type="text" />
-              </label>
           </>
           <>
-            <label htmlFor="password">Password
+            <label htmlFor="password">Password</label>
               <span style={{color: 'red'}}>{errors.password}</span>
               <input onChange={change} id="password" value={form.password} type="password" />
-              </label>
           </>
-        <button> New Submit</button>
+        <input type="submit" value="Submit" />
       </form>
     </section>
   )
