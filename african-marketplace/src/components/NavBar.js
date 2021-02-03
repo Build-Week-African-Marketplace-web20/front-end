@@ -34,15 +34,15 @@ export const NavBar = ({isLoading, data}) => {
           <Nav className="mr-auto" navbar>
             <NavItem >
                 {/* <NavLink > */}
-                    <Link className="text-warning" to="/market">Market</Link>
+                    <Link className="text-warning link" to="/market">Market</Link>
                 {/* </NavLink> */}
             </NavItem>
             <NavItem>
                 {/* <NavLink> */}
                   {(token ? 
-                    <Link className="text-warning" to="/inventory">Inventory</Link>
+                    <Link className="text-warning link" to="/inventory">Inventory</Link>
                     : 
-                    <Link className="text-warning" to="/register">Register</Link>
+                    <Link className="text-warning link" to="/register">Register</Link>
                   )}
                     
                 {/* </NavLink> */}
@@ -56,7 +56,7 @@ export const NavBar = ({isLoading, data}) => {
                       onClick={()=>
                         getLogout()}>Logout</Link>
                     : 
-                    <Link className="text-warning" to="/login">Login</Link>
+                    <Link className="text-warning link" to="/login">Login</Link>
                   )}
                     
                 {/* </NavLink> */}
