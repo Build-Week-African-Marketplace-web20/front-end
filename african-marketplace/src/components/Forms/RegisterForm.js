@@ -39,17 +39,6 @@ const schema = yup.object().shape({
     // axios.post("/", form);
   };
 
-  // styles
-  const formStyle = {
-    minWidth: '300px',
-    maxWidth: '500px',
-    width: '50%'
-  };
-  const sectionStyle = {
-    display: 'flex',
-    justifyContent: 'center'
-  };
-
   useEffect(() => {
     schema.isValid(form).then(valid => setDisabled(!valid))
   }, [form]);
@@ -59,8 +48,8 @@ const schema = yup.object().shape({
 
 
   return (
-    <section className="wrapper style5" style={sectionStyle}>
-      <form onSubmit={submit} style={formStyle}>
+    <section className="form-section">
+      <form onSubmit={submit}>
 
         <h4>Register</h4>
           <>
