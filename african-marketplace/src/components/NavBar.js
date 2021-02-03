@@ -9,13 +9,13 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    // NavLink,
+    NavLink,
     NavbarText
   } from 'reactstrap';
 import { getLogout } from '../redux/actions/loginActions';
 
 
-export const NavBar = ({isLoading, data}) => {
+export const NavBar = ({isLoading, getLogout}) => {
    
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
@@ -33,22 +33,24 @@ export const NavBar = ({isLoading, data}) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem >
-                {/* <NavLink > */}
-                    <Link className="text-warning link" to="/market">Market</Link>
-                {/* </NavLink> */}
+
+                <NavLink >
+                    <Link className="text-warning" to="/market">Market</Link>
+                </NavLink>
+
             </NavItem>
             <NavItem>
-                {/* <NavLink> */}
+                <NavLink>
                   {(token ? 
                     <Link className="text-warning link" to="/inventory">Inventory</Link>
                     : 
                     <Link className="text-warning link" to="/register">Register</Link>
                   )}
                     
-                {/* </NavLink> */}
+                </NavLink>
             </NavItem>
             <NavItem>
-                {/* <NavLink> */}
+                <NavLink>
                 {(token ? 
                     <Link 
                       className="text-warning" 
@@ -58,10 +60,10 @@ export const NavBar = ({isLoading, data}) => {
                     : 
                     <Link className="text-warning link" to="/login">Login</Link>
                   )}
-                    
-                {/* </NavLink> */}
+                </NavLink>
             </NavItem>
           </Nav>
+          <NavbarText>{(isLoading ? <p>Please Wait</p> : "")}</NavbarText>
           <NavbarText>Connecting you with your favorite shops since 2021</NavbarText>
         </Collapse>
       </Navbar>
@@ -76,6 +78,8 @@ const mapStateToProps=(state)=>{
     isLoading: state.isLoading,
     data: state.data
   }
-}
+} 
 
-export default connect(mapStateToProps)(NavBar);
+const mapDispatchToProps = {getLogout}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

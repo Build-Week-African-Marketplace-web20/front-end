@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
+
 import '../../form.css';
-//seth imports
-import {getLogin} from '../../redux/actions/loginActions';
-import {connect} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+
+import {getLogin} from '../../redux/actions/loginActions'
+import {connect} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+
+
 
 // requirements
 const schema = yup.object().shape({
@@ -13,12 +16,9 @@ const schema = yup.object().shape({
   password: yup.string().required('Password is required').min(5, "Password must be at least 5 characters"),
 });
 
-
+  //getLogin is being passed in via the function below (mapDispatchToProps)
   const LoginForm = ({getLogin}) => {
-  // state
-  // placeholder login details
-  //u: eve.holt@reqres.in
-  //p:
+
   const [form, setForm] = useState({username: 'lambda345', password: 'lambda123'});
   const [errors, setErrors] = useState({username: '', password: ''});
   const [disabled, setDisabled] = useState(true);

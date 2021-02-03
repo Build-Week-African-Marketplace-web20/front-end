@@ -14,7 +14,10 @@ const schema = yup.object().shape({
 });
 
 
-  const RegisterForm = ({props, createUser}) => {
+
+  const RegisterForm = ({createUser}) => {
+
+
   // state
   const [form, setForm] = useState({username: 'lambda345', password: 'lambda123', owner: true});
   const [errors, setErrors] = useState({username: '', password: ''});

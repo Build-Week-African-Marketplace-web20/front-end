@@ -18,7 +18,7 @@ export const CREATE_USER_FAILURE = "CREATE_USER_FAILURE"
 const headers = {
     Accept: "application/json"
 }
-
+//create a new user on the database
 export const createUser = (form)=>(dispatch) => {
     console.log("createUser Action fired", form)
     dispatch({type:CREATE_USER_START})
@@ -34,7 +34,7 @@ export const createUser = (form)=>(dispatch) => {
 }
 
 
-
+//login the user and set token to localstorage
 export const getLogin = (form) => (dispatch) => {
     dispatch({type:LOGIN_START})
     console.log("getLogin Fired: ",form)
@@ -50,14 +50,14 @@ export const getLogin = (form) => (dispatch) => {
             dispatch({type:LOGIN_FAILURE , payload: err})
         })
 }
-
+//logout the user and remove token from localstorage
 export const getLogout = ()=>(dispatch) =>{
     dispatch({type:LOGOUT_START})
     axios.get('https://african-marketplace-backend.herokuapp.com/logout')
         .then(res=>{
             console.log(res);
             dispatch({type:LOGOUT_SUCCESS, payload: res})
-
+            localStorage.removeItem("token")
         })
         .catch(err=>{
             console.log(err);

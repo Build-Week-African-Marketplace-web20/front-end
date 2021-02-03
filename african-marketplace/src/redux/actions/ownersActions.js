@@ -25,7 +25,7 @@ const headers = {
     // Authorization: token
 }
 
-
+//Grabs all items available on the website.
 export const getInventory = () => (dispatch) => {
     dispatch({type:GET_INVENTORY_START})
     axios.get(`https://african-marketplace-backend.herokuapp.com/items/`, { headers:headers } )
@@ -38,7 +38,8 @@ export const getInventory = () => (dispatch) => {
             dispatch({type: GET_INVENTORY_FAILURE, payload: err})
         })
 }
-//[ Y ] Used
+
+//Grabs all items from one owner
 export const getOwnerInventory = (id) => (dispatch) => {
     dispatch({type:GET_INVENTORY_START})
     axios.get(`https://african-marketplace-backend.herokuapp.com/items/${id}`, { headers:headers } )
@@ -51,7 +52,7 @@ export const getOwnerInventory = (id) => (dispatch) => {
             dispatch({type: GET_INVENTORY_FAILURE, payload: err})
         })
 }
-
+//Grabs all owners on the site
 export const getOwners = () => (dispatch) => {
     dispatch({type: GET_OWNERS_START})
     axios.get('https://african-marketplace-backend.herokuapp.com/users')
@@ -64,7 +65,7 @@ export const getOwners = () => (dispatch) => {
             dispatch({type:GET_OWNERS_FAILURE, payload: err.message})
         })
 }
-
+//grabs all the items available on the site
 export const getItems = () => (dispatch) => {
     dispatch({type: GET_ITEMS_START})
     axios.get("https://african-marketplace-backend.herokuapp.com/items")
@@ -75,7 +76,7 @@ export const getItems = () => (dispatch) => {
             dispatch({type:GET_ITEMS_FAILURE, payload: err.data})
         })
 }
-
+//add an item to the logged in owner
 export const addItem = (form) => (dispatch) => {
     dispatch({type: ADD_ITEM_START})
     axios.post("https://african-marketplace-backend.herokuapp.com/items", form)
