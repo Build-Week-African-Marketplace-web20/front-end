@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: #282c34;
+  min-height: 1080px;
 }
 .App-header {
   background-color: #282c34;
@@ -57,7 +59,7 @@
 }
 .inventoryItems{
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: space-around;
 }
 .myInventory{
@@ -65,14 +67,14 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   margin-top: 50px;
-  min-height: 600px;
+  
 }
 .myItems{
   display: flex;
-  flex-flow: column wrap;
-  margin: 0 auto;
-  width: 80%;
-  border: 1px solid white;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  border-left: 1px solid white;
+  margin-left: 10px;
 }
 .storeFrontContainer{
   margin-top: 50px;
@@ -86,7 +88,26 @@ h3{
   color:white;
   text-decoration: underline;
 }
+h6{
+  color: black;
+  text-decoration: underline;
+}
 .ownerCard{
   margin: 2px;
   padding: 5px;
+  width: 310px;
+}
+.editItemForm{
+  width: 290px;
+}
+.form-control{
+  margin-top: 3px;
+}
+.table{
+  background-color: white;
+  width: 80%;
+}
+.marketplace{
+  width: 80%;
+  margin: 0 auto;
 }

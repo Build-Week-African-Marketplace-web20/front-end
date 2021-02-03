@@ -35,7 +35,7 @@ export const NavBar = ({isLoading, getLogout}) => {
             <NavItem >
 
                 <NavLink >
-                    <Link className="text-warning" to="/market">Market</Link>
+                    <Link className="text-warning link" to="/market">Market</Link>
                 </NavLink>
 
             </NavItem>

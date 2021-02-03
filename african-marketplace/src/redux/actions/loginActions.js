@@ -56,12 +56,14 @@ export const getLogout = ()=>(dispatch) =>{
     axios.get('https://african-marketplace-backend.herokuapp.com/logout')
         .then(res=>{
             console.log(res);
-            dispatch({type:LOGOUT_SUCCESS, payload: res})
             localStorage.removeItem("token")
+            dispatch({type:LOGOUT_SUCCESS, payload: res})
+            
         })
         .catch(err=>{
             console.log(err);
-            dispatch({type:LOGOUT_FAILURE, payload: err})
             localStorage.removeItem("token")
+            dispatch({type:LOGOUT_FAILURE, payload: err})
+            
         })
 }

@@ -20,6 +20,10 @@ export const ADD_ITEM_START = "ADD_ITEM_START"
 export const ADD_ITEM_SUCCESS = "ADD_ITEM_SUCCESS"
 export const ADD_ITEM_FAILURE = "ADD_ITEM_FAILURE"
 
+export const EDIT_ITEM_START = "EDIT_ITEM_START"
+export const EDIT_ITEM_SUCCESS = "EDIT_ITEM_SUCCESS"
+export const EDIT_ITEM_FAILURE = "EDIT_ITEM_FAILURE"
+
 const headers = {
     Accept: "application/json",
     // Authorization: token
@@ -85,5 +89,18 @@ export const addItem = (form) => (dispatch) => {
         })
         .catch(err=>{
             dispatch({type: ADD_ITEM_FAILURE, payload: err})
+        })
+}
+
+export const editItem = (id) => (dispatch) => {
+    dispatch({type: EDIT_ITEM_START})
+    axios.put(`https://african-marketplace-backend.herokuapp.com/items/${id}`, id)
+        .then(res=>{
+            console.log(res);
+            dispatch({type: EDIT_ITEM_SUCCESS, payload: res.data})
+        })
+        .catch(err=>{
+            console.log(err)
+            dispatch({type: EDIT_ITEM_FAILURE, payload: err.message})
         })
 }

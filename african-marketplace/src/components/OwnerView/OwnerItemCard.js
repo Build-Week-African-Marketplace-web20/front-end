@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import {
-    Card, CardText, CardBody, CardLink,
+    Card, CardText, CardBody, Button,
     CardTitle, CardSubtitle
   } from 'reactstrap';
-
+import TempEditForm from '../Forms/TempEditForm'
 export const OwnerItemCard = () => {
 
 const [isEditing, setIsEditing] = useState(false);
@@ -19,7 +19,8 @@ const [isEditing, setIsEditing] = useState(false);
           <CardBody>
             <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
             
-            <CardLink>Another Link</CardLink>
+            <Button color="primary" size="sm" outline onClick={()=>setIsEditing(!isEditing)}>Toggle Edit</Button>
+            {(isEditing ? <TempEditForm/> : "")}
           </CardBody>
         </Card>
       </div>
