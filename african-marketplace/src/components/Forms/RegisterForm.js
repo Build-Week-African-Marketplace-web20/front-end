@@ -16,7 +16,7 @@ const schema = yup.object().shape({
 });
 
 
-  const RegisterForm = ({props, createUser}) => {
+  const RegisterForm = ({createUser}) => {
   // these props are only used for enabling their display on the page. See the jsx
   
 

@@ -1,8 +1,8 @@
 //[ ] This component will house all of the StoreCards on display
 //[ ] Install 'spotlight' element for showcasing selected items.
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
-import { getOwnerInventory, getInventory, getOwners } from '../../redux/actions/ownersActions'
+// import { connect } from 'react-redux'
+// import { getOwnerInventory, getInventory, getOwners } from '../../redux/actions/ownersActions'
 import StoreCard from './StoreCard'
 
 const mockupData = [
@@ -76,9 +76,9 @@ const mockupData = [
 console.log(mockupData)
 
 
-
+//This component is not connected to redux.
 export const Store = (props) => {
-    //place this where mock is when props setup
+    
     const [shownInventory, setShownInventory] = useState()
     console.log(props)
 
@@ -95,22 +95,14 @@ export const Store = (props) => {
     return(
         <>
         <p>Store Component</p>
-        
         <div className="store">
-            {/* Create a store-line for each owner in the API */}
-           
-      
         {(props.ownerInventory) && props.ownerInventory.map( ( item ) =>
             <div key={item.id} className="inventoryContainer">
                 <div>
                     <h5>{item.name}'s Store</h5>
                     </div>
                 <div className="inventoryItems">
-                    
-                       
-                            {/* <StoreCard key={owner.id} /> */}
-                        
-                    
+                            {/* <StoreCard key={owner.id} /> */}            
                     </div>
                 </div>
             )}
