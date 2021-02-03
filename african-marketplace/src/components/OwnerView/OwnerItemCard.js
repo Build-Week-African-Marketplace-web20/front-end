@@ -19,7 +19,7 @@ const [isEditing, setIsEditing] = useState(false);
           <CardBody>
             <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
             
-            <Button color="primary" onClick={()=>setIsEditing(!isEditing)}>Toggle Edit</Button>
+            <Button color="primary" size="sm" outline onClick={()=>setIsEditing(!isEditing)}>Toggle Edit</Button>
             {(isEditing ? <TempEditForm/> : "")}
           </CardBody>
         </Card>
