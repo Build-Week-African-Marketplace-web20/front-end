@@ -62,5 +62,6 @@ export const getLogout = ()=>(dispatch) =>{
         .catch(err=>{
             console.log(err);
             dispatch({type:LOGOUT_FAILURE, payload: err})
+            localStorage.removeItem("token")
         })
 }
