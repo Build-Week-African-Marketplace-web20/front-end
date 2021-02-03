@@ -19,7 +19,8 @@ const [isEditing, setIsEditing] = useState(false);
           <CardBody>
             <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
             
-            <CardLink>Another Link</CardLink>
+            <CardLink>Edit Item</CardLink>
+            {(isEditing ? <p>true</p> : <p>false</p>)}
           </CardBody>
         </Card>
       </div>

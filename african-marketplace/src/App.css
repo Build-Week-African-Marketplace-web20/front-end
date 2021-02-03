@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #282c34;
 }
 .App-header {
   background-color: #282c34;
@@ -57,7 +58,7 @@
 }
 .inventoryItems{
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: space-around;
 }
 .myInventory{
@@ -71,7 +72,6 @@
   display: flex;
   flex-flow: column wrap;
   margin: 0 auto;
-  width: 80%;
   border: 1px solid white;
 }
 .storeFrontContainer{
