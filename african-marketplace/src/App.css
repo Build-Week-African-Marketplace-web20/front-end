@@ -8,14 +8,16 @@
   /* display: flex; */
   flex-direction: column;
   align-items: center;
+
+  /* justify-content: center; */
+  /* font-size: calc(10px + 2vmin); */
+  color: black;
+
   justify-content: center;
   /* font-size: calc(10px + 2vmin);
   color: black; */
 }
 
-.link {
-  margin-left: 25px;
-}
 
 .storeCard{
   width: 200px;
@@ -58,18 +60,33 @@
   flex-flow: row wrap;
   justify-content: space-around;
 }
-.tempHolder{
+.myInventory{
   display: flex;
-  flex-flow: row nowrap
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-top: 50px;
+  min-height: 600px;
 }
-.temp{
-  background-color: white;
+.myItems{
+  display: flex;
+  flex-flow: column wrap;
+  margin: 0 auto;
+  width: 80%;
+  border: 1px solid white;
+}
+.storeFrontContainer{
+  margin-top: 50px;
 }
 .addItemForm{
   display:flex;
   flex-flow: column nowrap;
-
+  color: white;
 }
-h5{
+h3{
   color:white;
+  text-decoration: underline;
+}
+.ownerCard{
+  margin: 2px;
+  padding: 5px;
 }

@@ -20,8 +20,8 @@ export const Storefront = ({owners, siteInventory, getOwnerInventory, getOwners,
     
     
     return(
-        <div>
-            <TempAddForm />
+        <div className="storeFrontContainer">
+            {/* <TempAddForm /> */}
             <p>Available Stores:</p>
             <div className="storeSelectorContainer">
                 {}
