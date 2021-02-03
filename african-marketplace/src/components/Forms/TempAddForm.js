@@ -30,6 +30,7 @@ export const TempAddForm = ({addItem}) => {
 
 
     return(
+
 <Form onSubmit={handleSubmit} className="addItemForm">
     <h3>Add Item</h3>
     <Label>Product Name:</Label>
@@ -58,6 +59,7 @@ export const TempAddForm = ({addItem}) => {
     
     <Button color="primary">Add Item</Button>
 </Form>
+
 
     )
 }

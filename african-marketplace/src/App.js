@@ -1,4 +1,5 @@
 import './App.css';
+import './form.css';
 import { Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar'
 
@@ -22,10 +23,12 @@ function App() {
           <Route exact path="/market" component = {Storefront}/>
           <Route path="/login" component={LoginForm}/>
           <Route path="/register" component={RegisterForm}/>
+
           <Route exact path='/inventory' component={Inventory}/>
           <Route path='/addItem' component={TempAddForm}/>
       
         </header> 
+
       </div>
     
 </>
