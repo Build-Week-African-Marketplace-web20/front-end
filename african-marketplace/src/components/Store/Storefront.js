@@ -34,16 +34,15 @@ export const Storefront = ({owners, siteInventory, getOwnerInventory, getOwners,
                         ))}
                 </div>
 
-            {/* pass in prop that holds filtered list  */}
             {owners && owners.map(
                     owner => (
                         
-                        <Store ownerId={owner.id}/>
+                        <Store ownerInventory={siteInventory}/>
                         ))}
         </div>
     )
 }
-const mapStateToProps = (state, ownProps) =>{
+const mapStateToProps = (state) =>{
     return{
         owners: state.data.ownerList,
         siteInventory: state.data.siteInventory
@@ -51,4 +50,5 @@ const mapStateToProps = (state, ownProps) =>{
     }
 }
 const mapDispatchToProps = {getInventory, getOwnerInventory, getOwners, getItems}
+
 export default connect(mapStateToProps,mapDispatchToProps) (Storefront);

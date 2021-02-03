@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
-//seth imports
 import {getLogin} from '../../redux/actions/loginActions'
 import {connect} from 'react-redux'
 import {useHistory} from 'react-router-dom'
@@ -14,15 +13,9 @@ const schema = yup.object().shape({
   password: yup.string().required('Password is required').min(5, "Password must be at least 5 characters"),
 });
 
-
+  //getLogin is being passed in via the function below (mapDispatchToProps)
   const LoginForm = ({getLogin}) => {
-  // these props are only used for enabling their display on the page. See the jsx
   
-
-  // state
-  // placeholder login details
-  //u: eve.holt@reqres.in
-  //p:
   const [form, setForm] = useState({username: 'lambda345', password: 'lambda123'});
   const [errors, setErrors] = useState({username: '', password: ''});
   const [disabled, setDisabled] = useState(true);

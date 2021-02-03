@@ -1,6 +1,9 @@
 import { GET_INVENTORY_START, GET_INVENTORY_FAILURE, GET_INVENTORY_SUCCESS } from '../redux/actions/ownersActions'
 import {axiosWithAuth} from './axiosWithAuth'
 
+//THIS CODE IS NOT USED BUT LEFT FOR EXAMPLE.
+
+
 export const getInventory = (id) => (dispatch)=> {
     dispatch({type: GET_INVENTORY_START})   
     //[ Y ] Working

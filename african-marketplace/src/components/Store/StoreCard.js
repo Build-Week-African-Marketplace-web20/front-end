@@ -14,24 +14,15 @@ const {name, price, description, location, category} = props.item
     return(
         <div className="storeCard">
             <Card color="primary">
-                <CardHeader className="text-warning">{name}</CardHeader>
+                <CardHeader className="text-warning">{props.name}</CardHeader>
                 <CardBody>
                     <CardTitle tag="h5">
-                    Price: {price}</CardTitle>
+                    Price: {props.price}</CardTitle>
                     <CardSubtitle tag="h6" className="mb-2 text-warning">
                     Seller:  </CardSubtitle>
-                    {/* <CardText>
-                    <div>
-                        
-                        </div>
-                    <div>
-                        Location: {location} ||  Category: {category}
-                        </div>
-                        </CardText> */}
                 </CardBody>
                 <CardFooter>
-                
-                        {description}
+                        {props.description}
                 </CardFooter>
             </Card>
         </div>

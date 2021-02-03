@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { getInventory } from '../../utils/getInventory'
+
 import StoreCard from '../Store/Storefront'
 
 export const Inventory = () => {
