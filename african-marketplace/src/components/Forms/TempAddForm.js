@@ -29,34 +29,36 @@ export const TempAddForm = ({addItem}) => {
 
 
     return(
+        <section className="form-section">
 <form onSubmit={handleSubmit} className="addItemForm">
     <h5>Add Item:</h5>
-    <label>
+    <label htmlFor="name" />
         <input
         type="text"
         name="name"
+        id="name"
         value={form.name}
         onChange={handleChanges}
         placeholder='name'/>
-    </label>
-    <label>
+    <label htmlFor="price" />
         <input
         type="text"
         name="price"
+        id="price"
         value={form.price}
         onChange={handleChanges}
         placeholder='price'/>
-    </label>
-    <label>
+    <label htmlFor="desc" />
         <input
         type="text"
         name="description"
+        id="desc"
         value={form.description}
         onChange={handleChanges}
         placeholder='description'/>
-    </label>
-    <button>submit</button>
+    <input type="submit" value="Submit" />
 </form>
+</section>
 
     )
 }

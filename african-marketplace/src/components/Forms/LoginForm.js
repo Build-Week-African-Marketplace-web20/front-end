@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
+
+import '../../form.css';
+
 import {getLogin} from '../../redux/actions/loginActions'
 import {connect} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 
-// import '../template.css';
+
 
 // requirements
 const schema = yup.object().shape({
@@ -15,7 +18,7 @@ const schema = yup.object().shape({
 
   //getLogin is being passed in via the function below (mapDispatchToProps)
   const LoginForm = ({getLogin}) => {
-  
+
   const [form, setForm] = useState({username: 'lambda345', password: 'lambda123'});
   const [errors, setErrors] = useState({username: '', password: ''});
   const [disabled, setDisabled] = useState(true);
@@ -39,17 +42,6 @@ const schema = yup.object().shape({
     // axios.post("/", form);
   };
 
-  // styles
-  const formStyle = {
-    minWidth: '300px',
-    maxWidth: '500px',
-    width: '50%'
-  };
-  const sectionStyle = {
-    display: 'flex',
-    justifyContent: 'center'
-  };
-
   useEffect(() => {
     schema.isValid(form).then(valid => setDisabled(!valid))
   }, [form]);
@@ -59,23 +51,22 @@ const schema = yup.object().shape({
 
 
   return (
-    <section className="wrapper style5" style={sectionStyle}>
-      <form onSubmit={submit} style={formStyle}>
+    <section className="form-section">
+      <form onSubmit={submit}>
 
         <h4>Login</h4>
           <>
-            <label htmlFor="username">Username
+            <label htmlFor="username">Username</label>
               <span style={{color: 'red'}}>{errors.username}</span>
               <input onChange={change} value={form.username} id="username" type="text" />
-              </label>
+              
           </>
           <>
-            <label htmlFor="password">Password
+            <label htmlFor="password">Password</label>
               <span style={{color: 'red'}}>{errors.password}</span>
               <input onChange={change} id="password" value={form.password} type="password" />
-              </label>
           </>
-        <button> New Submit</button>
+        <input type="submit" value="Submit" />
       </form>
     </section>
   )

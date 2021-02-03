@@ -1,4 +1,5 @@
 import './App.css';
+import './form.css';
 import { Switch, Route } from 'react-router-dom';
 import NavBar from './components/NavBar'
 
@@ -22,8 +23,8 @@ function App() {
           <Route path="/login" component={LoginForm}/>
           <Route path="/register" component={RegisterForm}/>
           <Route path='/inventory' component={Inventory}/>
-      
-        </header> 
+        </header>
+         
       </div>
     
 </>
