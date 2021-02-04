@@ -82,14 +82,14 @@ export const TempAddForm = ({owner, addItem}) => {
             name="location"
             value={form.location}
             onChange={handleChanges}>
-                <option>City A</option>
-                <option>City B</option>
-                <option>City C</option>
-                <option>City D</option>
-                <option>City E</option>
-                <option>City F</option>
-                <option>City G</option>
-                <option>City H</option>
+                <option>Nigeria</option>
+                <option>Ethiopia</option>
+                <option>Egypt</option>
+                <option>DR Congo</option>
+                <option>Tanzania</option>
+                <option>Kenya</option>
+                <option>Uganda</option>
+                <option>Other</option>
             </Input>
     <Label>Category:</Label>
         <Input
@@ -97,14 +97,14 @@ export const TempAddForm = ({owner, addItem}) => {
             name="category"
             value={form.category}
             onChange={handleChanges}>
-                <option>Category A</option>
-                <option>Category B</option>
-                <option>Category C</option>
-                <option>Category D</option>
-                <option>Category E</option>
-                <option>Category F</option>
-                <option>Category G</option>
-                <option>Category H</option>
+                <option>Animal Products</option>
+                <option>Beans</option>
+                <option>Cereals</option>
+                <option>Fruits</option>
+                <option>Pasta</option>
+                <option>Roots & Tubers</option>
+                <option>Seeds & Nuts</option>
+                <option>Other</option>
             </Input>
     
     <Button color="primary">Add Item</Button>

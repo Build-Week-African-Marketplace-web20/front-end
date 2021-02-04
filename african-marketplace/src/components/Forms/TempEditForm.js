@@ -4,13 +4,14 @@ import {editItem} from '../../redux/actions/ownersActions'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 export const TempEditForm = ({owner,editItem}) => {
-
+    const thisOwner = owner;
     const dispatch = useDispatch()
     const [form, setForm] = useState({
         name:"",
         price: "",
-        description: "",
-        id: owner.id
+        category: "",
+        location: "",
+        users_id: thisOwner
         })
 
 
@@ -54,9 +55,43 @@ export const TempEditForm = ({owner,editItem}) => {
             value={form.description}
             onChange={handleChanges}
             placeholder='Brief description'/>
+
+
+        <Input
+            type='select'
+            name="location"
+            value={form.location}
+            onChange={handleChanges}>
+                <option>Nigeria</option>
+                <option>Ethiopia</option>
+                <option>Egypt</option>
+                <option>DR Congo</option>
+                <option>Tanzania</option>
+                <option>Kenya</option>
+                <option>Uganda</option>
+                <option>Other</option>
+            </Input>
+    
+        <Input
+            type='select'
+            name="category"
+            value={form.category}
+            onChange={handleChanges}>
+                <option>Animal Products</option>
+                <option>Beans</option>
+                <option>Cereals</option>
+                <option>Fruits</option>
+                <option>Pasta</option>
+                <option>Roots & Tubers</option>
+                <option>Seeds & Nuts</option>
+                <option>Other</option>
+            </Input>
     
     <Button color="primary">Update Item</Button>
 </Form>
+
+
+
 
 
     )

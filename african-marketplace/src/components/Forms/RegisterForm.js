@@ -8,9 +8,9 @@ import {useHistory} from 'react-router-dom'
 
 // requirements
 const schema = yup.object().shape({
-  storeName: yup.string().required('Username is required').min(3, "Username needs to be at least 3 characters"),
-  email: yup.string().required('An email is required'),
+  username: yup.string().required('Username is required').min(3, "Username needs to be at least 3 characters"),
   password: yup.string().required('Password is required').min(5, "Password must be at least 5 characters"),
+  name: yup.string().required('Provide a name for your store'),
 });
 
 

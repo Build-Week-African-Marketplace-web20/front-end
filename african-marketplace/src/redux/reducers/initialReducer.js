@@ -39,7 +39,9 @@ export const initialReducer = (state=initialState, action ) => {
         case CREATE_USER_FAILURE:
                 return{
                     ...state,
-                isLoading: false
+                isLoading: false,
+                error:{...state.error,
+                    userFailure: action.payload}
             }
         case LOGIN_START:
             return{
@@ -59,7 +61,8 @@ export const initialReducer = (state=initialState, action ) => {
             return{
                 ...state,
                 isLoading: false,
-                error:action.payload
+                error:{...state.error,
+                    loginFailure: action.payload}
             }
         case LOGOUT_START:
             return{
@@ -78,7 +81,8 @@ export const initialReducer = (state=initialState, action ) => {
                 ...state,
                 isLoading: false,
                 isLoggedIn: false,
-                error:action.payload
+                error:{...state.error,
+                    logoutFailure: action.payload}
             }
         case GET_OWNERS_START:
             return{
@@ -96,7 +100,8 @@ export const initialReducer = (state=initialState, action ) => {
             return{
                 ...state,
                 isLoading: false,
-                error: action.payload
+                error:{...state.error,
+                    ownersFailure: action.payload}
             }
         case GET_INVENTORY_START:
             return{
@@ -115,7 +120,8 @@ export const initialReducer = (state=initialState, action ) => {
             return{
                 ...state,
                 isLoading: false,
-                error:action.payload
+                error:{...state.error,
+                    inventoryFailure: action.payload}
             }
         case GET_OWNERS_INVENTORY_START:
             return {
@@ -136,7 +142,8 @@ export const initialReducer = (state=initialState, action ) => {
             return{
                 ...state,
                 isLoading: false,
-                error: action.payload
+                error:{...state.error,
+                    ownerInventoryFailure: action.payload}
             }
         case ADD_ITEM_START:
             return{
@@ -148,17 +155,15 @@ export const initialReducer = (state=initialState, action ) => {
                 ...state,
                 isLoading: false,
                 data:{...state.data,
-                    owner:{...state.data.owner,
-                        inventory:[...state.data.owner.inventory,
-                            action.payload]
-                        }
-                    }
+                    siteInventory: state.data.siteInventory.concat(action.payload)
+                }
             }
         case ADD_ITEM_FAILURE:
             return{
                 ...state,
                 isLoading: false,
-                error: action.payload
+                error:{...state.error,
+                    itemFailure: action.payload}
             }
 
         default:
