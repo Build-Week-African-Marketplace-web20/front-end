@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+h1{
+  font-family: 'Amatic SC', cursive;
+  font-size: 6em;
+  padding: 50px;
+  color:sandybrown
+}
+h2{
+  font-family: 'Open Sans Condensed', sans-serif;
+  color: white;
+  padding: 50px;
+  width: 50%;
+  margin: 0 auto;
+}
 .App {
   text-align: center;
   background-color: #282c34;
@@ -20,6 +35,9 @@
   color: black; */
 }
 
+footer{
+  margin-top: 100px;
+}
 
 .storeCard{
   width: 200px;
@@ -110,4 +128,20 @@ h6{
 .marketplace{
   width: 80%;
   margin: 0 auto;
+}
+.toastContainer{
+  display:flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+.topToasts{
+  display:flex;
+  justify-content: space-around;
+  margin: 10px;
+
+}
+.bottomToasts{
+  display:flex;
+  justify-content: center;
+  margin: 10px;
 }

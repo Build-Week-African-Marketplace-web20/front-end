@@ -2,7 +2,8 @@ import {
     GET_INVENTORY_START, GET_INVENTORY_SUCCESS, GET_INVENTORY_FAILURE, 
     GET_OWNERS_START, GET_OWNERS_SUCCESS, GET_OWNERS_FAILURE,
     GET_OWNERS_INVENTORY_START, GET_OWNERS_INVENTORY_SUCCESS, GET_OWNERS_INVENTORY_FAILURE,
-    GET_ITEMS_START, GET_ITEMS_SUCCESS, GET_ITEMS_FAILURE,
+    GET_ITEMS_START, GET_ITEMS_SUCCESS, GET_ITEMS_FAILURE, 
+    ADD_ITEM_START, ADD_ITEM_SUCCESS, ADD_ITEM_FAILURE
     } from '../actions/ownersActions'
 import {
     LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, 
@@ -15,9 +16,11 @@ const initialState = {
     error: "",
     isLoggedIn: false,
     data:{
-        currentOwner: {},
-        currentInventory: [],
-        ownerList: []
+        owner: {
+            inventory: []
+            },
+        allOwners: [],
+        siteInventory: [],
     },
 }
 
@@ -87,29 +90,9 @@ export const initialReducer = (state=initialState, action ) => {
                 ...state,
                 isLoading: false,
                 data:{...state.data,
-                    ownerList: action.payload}
+                    allOwners: action.payload}
                 }
         case GET_OWNERS_FAILURE:
-            return{
-                ...state,
-                isLoading: false,
-                error: action.payload
-            }
-        case GET_ITEMS_START:
-            return{
-                ...state,
-                isLoading: true,
-            }
-        case GET_ITEMS_SUCCESS:
-            return{
-                ...state,
-                isLoading: false,
-                data: {
-                    ...state.data,
-                    siteInventory: action.payload
-                }
-            }
-        case GET_ITEMS_FAILURE:
             return{
                 ...state,
                 isLoading: false,
@@ -125,7 +108,7 @@ export const initialReducer = (state=initialState, action ) => {
                 ...state,
                 isLoading: false,
                 data:{...state.data,
-                    currentInventory: action.payload
+                    siteInventory: action.payload
                 }
             }
         case GET_INVENTORY_FAILURE:
@@ -144,13 +127,37 @@ export const initialReducer = (state=initialState, action ) => {
                 ...state,
                 isLoading: false,
                 data: {...state.data,
-                    ownersInventory: action.payload
-            }
-        }
+                    owner: {...state.data.owner,
+                        inventory: action.payload
+                        }
+                    }
+                }
         case GET_OWNERS_INVENTORY_FAILURE:
             return{
                 ...state,
+                isLoading: false,
+                error: action.payload
+            }
+        case ADD_ITEM_START:
+            return{
+                ...state,
                 isLoading: true,
+            }
+        case ADD_ITEM_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                data:{...state.data,
+                    owner:{...state.data.owner,
+                        inventory:[...state.data.owner.inventory,
+                            action.payload]
+                        }
+                    }
+            }
+        case ADD_ITEM_FAILURE:
+            return{
+                ...state,
+                isLoading: false,
                 error: action.payload
             }
 

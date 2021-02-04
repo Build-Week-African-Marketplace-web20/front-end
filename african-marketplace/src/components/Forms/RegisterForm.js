@@ -8,7 +8,7 @@ import {useHistory} from 'react-router-dom'
 
 // requirements
 const schema = yup.object().shape({
-  username: yup.string().required('Username is required').min(3, "Username needs to be at least 3 characters"),
+  storeName: yup.string().required('Username is required').min(3, "Username needs to be at least 3 characters"),
   email: yup.string().required('An email is required'),
   password: yup.string().required('Password is required').min(5, "Password must be at least 5 characters"),
 });
@@ -19,8 +19,8 @@ const schema = yup.object().shape({
 
 
   // state
-  const [form, setForm] = useState({username: 'lambda345', password: 'lambda123', owner: true});
-  const [errors, setErrors] = useState({username: '', password: ''});
+  const [form, setForm] = useState({username: 'sethMac', password: 'alone', name: `Seth's Shop`});
+  const [errors, setErrors] = useState({username: '', password: '', name: ""});
   const [disabled, setDisabled] = useState(true);
 
   // functions
@@ -64,6 +64,11 @@ const schema = yup.object().shape({
             <label htmlFor="password">Password</label>
               <span style={{color: 'red'}}>{errors.password}</span>
               <input onChange={change} id="password" value={form.password} type="password" />
+          </>
+          <>
+            <label htmlFor="name">Store Name</label>
+              <span style={{color: 'red'}}>{errors.name}</span>
+              <input onChange={change} id="name" value={form.name} type="text" />
           </>
         <input type="submit" value="Submit" />
       </form>

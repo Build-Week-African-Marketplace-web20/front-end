@@ -1,4 +1,5 @@
 import axios from "axios"
+import {axiosWithAuth} from '../../utils/axiosWithAuth'
 
 export const GET_OWNERS_START = "GET_OWNERS_START"
 export const GET_OWNERS_SUCCESS = "GET_OWNERS_SUCCESS"
@@ -31,8 +32,10 @@ const headers = {
 
 //Grabs all items available on the website.
 export const getInventory = () => (dispatch) => {
+    console.log("THIS ONE")
     dispatch({type:GET_INVENTORY_START})
-    axios.get(`https://african-marketplace-backend.herokuapp.com/items/`, { headers:headers } )
+    axiosWithAuth().get('/market/items')
+    // axios.get(`https://african-marketplace-backend.herokuapp.com/items/`, { headers:headers } )
         .then(res=>{
             console.log("G.I. - Success - : ",res)
             dispatch({type:GET_INVENTORY_SUCCESS, payload: res.data})
@@ -48,11 +51,11 @@ export const getOwnerInventory = (id) => (dispatch) => {
     dispatch({type:GET_INVENTORY_START})
     axios.get(`https://african-marketplace-backend.herokuapp.com/items/${id}`, { headers:headers } )
         .then(res=>{
-            console.log("G.I. - Success - : ",res)
+            console.log("G.O.I. - Success - : ",res)
             dispatch({type:GET_INVENTORY_SUCCESS, payload: res.data})
         })
         .catch(err => {
-            console.log("G.I. - Failure - : ",err)
+            console.log("G.O.I. - Failure - : ",err)
             dispatch({type: GET_INVENTORY_FAILURE, payload: err})
         })
 }
@@ -83,7 +86,8 @@ export const getItems = () => (dispatch) => {
 //add an item to the logged in owner
 export const addItem = (form) => (dispatch) => {
     dispatch({type: ADD_ITEM_START})
-    axios.post("https://african-marketplace-backend.herokuapp.com/items", form)
+    axiosWithAuth().post("/market/items", form)
+    // axios.post("https://african-marketplace-backend.herokuapp.com/items", form)
         .then(res => {
             dispatch({type: ADD_ITEM_SUCCESS, payload: res})
         })
@@ -94,6 +98,7 @@ export const addItem = (form) => (dispatch) => {
 
 export const editItem = (id) => (dispatch) => {
     dispatch({type: EDIT_ITEM_START})
+    axiosWithAuth().put(`/market/items/${id}`, id)
     axios.put(`https://african-marketplace-backend.herokuapp.com/items/${id}`, id)
         .then(res=>{
             console.log(res);

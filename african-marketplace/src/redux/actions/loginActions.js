@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {axiosWithAuth} from '../../utils/axiosWithAuth'
 
 export const LOGIN_START = "LOGIN_START"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
@@ -22,7 +22,8 @@ const headers = {
 export const createUser = (form)=>(dispatch) => {
     console.log("createUser Action fired", form)
     dispatch({type:CREATE_USER_START})
-    axios.post("https://african-marketplace-backend.herokuapp.com/register",  form)
+    // axios.post("https://african-marketplace-backend.herokuapp.com/register",  form)
+    axiosWithAuth().post("/auth/register", form)
         .then(res=>{
             console.log(res)
             dispatch({type: CREATE_USER_SUCCESS, payload: res})
@@ -38,10 +39,11 @@ export const createUser = (form)=>(dispatch) => {
 export const getLogin = (form) => (dispatch) => {
     dispatch({type:LOGIN_START})
     console.log("getLogin Fired: ",form)
-    axios.post( "https://african-marketplace-backend.herokuapp.com/login",  form )
+    // axios.post( "https://african-marketplace-backend.herokuapp.com/login",  form )
+    axiosWithAuth().post("/auth/login", form)
         .then(res=>{
             console.log("Login Success: ", res)
-            localStorage.setItem("token", res.data.message)
+            localStorage.setItem("token", res.data.token)
             dispatch({type:LOGIN_SUCCESS, payload: res.data})
             
         })

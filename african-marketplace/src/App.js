@@ -9,7 +9,7 @@ import TempAddForm from './components/Forms/TempAddForm'
 
 import Storefront from './components/Store/Storefront'
 import Inventory from './components/OwnerView/Inventory'
-
+import LandingPage from './components/LandingPage'
 
 
 function App() {
@@ -19,15 +19,16 @@ function App() {
      <>
       <div className="App">
         <Route path="/" component={NavBar} />
-        <header className="App-header">
-          <Route exact path="/market" component = {Storefront}/>
+        {/* <header className="App-header"> */}
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/market" component ={Storefront}/>
           <Route path="/login" component={LoginForm}/>
           <Route path="/register" component={RegisterForm}/>
 
           <Route exact path='/inventory' component={Inventory}/>
           <Route path='/addItem' component={TempAddForm}/>
       
-        </header> 
+        {/* </header>  */}
 
       </div>
     
