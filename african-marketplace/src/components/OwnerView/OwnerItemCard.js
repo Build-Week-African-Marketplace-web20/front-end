@@ -4,7 +4,7 @@ import {
     CardTitle, CardSubtitle
   } from 'reactstrap';
 import TempEditForm from '../Forms/TempEditForm'
-export const OwnerItemCard = () => {
+export const OwnerItemCard = (props) => {
 
 const [isEditing, setIsEditing] = useState(false);
 

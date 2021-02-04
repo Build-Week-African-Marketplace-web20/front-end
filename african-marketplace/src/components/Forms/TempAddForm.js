@@ -1,3 +1,9 @@
+//Notes
+//The form has a field to select from a dropdown a list of cities and add it to the item .Post. 
+// The database can currently not handle this request. 
+// Uncomment when available.
+
+
 import React, {useState} from 'react'
 import { connect, useDispatch } from 'react-redux'
 import {addItem} from '../../redux/actions/ownersActions'
@@ -10,6 +16,7 @@ export const TempAddForm = ({addItem}) => {
         name:"",
         price: "",
         description: "",
+        // location: "",
         })
 
 
@@ -25,6 +32,7 @@ export const TempAddForm = ({addItem}) => {
             name:"",
             price: "",
             description: "",
+            // location: "",
         })
     }
 
@@ -56,6 +64,24 @@ export const TempAddForm = ({addItem}) => {
             value={form.description}
             onChange={handleChanges}
             placeholder='Brief description'/>
+
+    {/* <Label>Location:</Label>
+        <Input
+            type='select'
+            name="location"
+            value={form.location}
+            onChange={handleChanges}
+            placeholder="Select your city">
+                <option>City A</option>
+                <option>City B</option>
+                <option>City C</option>
+                <option>City D</option>
+                <option>City E</option>
+                <option>City F</option>
+                <option>City G</option>
+                <option>City H</option>
+
+            </Input> */}
     
     <Button color="primary">Add Item</Button>
 </Form>
