@@ -4,9 +4,10 @@ import {
     CardTitle, CardSubtitle
   } from 'reactstrap';
 import TempEditForm from '../Forms/TempEditForm'
+
 export const OwnerItemCard = (props) => {
 
-const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
     return(
     <div>

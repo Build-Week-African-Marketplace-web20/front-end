@@ -3,13 +3,14 @@ import { connect, useDispatch } from 'react-redux'
 import {editItem} from '../../redux/actions/ownersActions'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-export const TempEditForm = ({editItem}) => {
+export const TempEditForm = ({owner,editItem}) => {
 
     const dispatch = useDispatch()
     const [form, setForm] = useState({
         name:"",
         price: "",
         description: "",
+        id: owner.id
         })
 
 
@@ -62,7 +63,9 @@ export const TempEditForm = ({editItem}) => {
 }
 
 const mapStateToProps = state => {
-    return {state}
+    return {
+        owner: state.data.owner
+    }
 }
 const mapDispatchToProps = {editItem}
 

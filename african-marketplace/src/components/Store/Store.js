@@ -82,15 +82,6 @@ export const Store = (props) => {
     const [shownInventory, setShownInventory] = useState()
     console.log(props)
 
-    // const formatData = () => {
-    //     const formattedData = [];
-    //     (inventory && inventory.map( (item) =>(
-    //         formattedData.push(item.id)
-    //     )))
-    //     return(console.log(formattedData))
-    // }
-    // formatData();
-
 
     return(
         <>

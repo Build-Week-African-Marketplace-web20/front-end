@@ -19,7 +19,7 @@ const schema = yup.object().shape({
   //getLogin is being passed in via the function below (mapDispatchToProps)
   const LoginForm = ({getLogin}) => {
 
-  const [form, setForm] = useState({username: 'lambda345', password: 'lambda123'});
+  const [form, setForm] = useState({username: 'sethMac', password: 'alone'});
   const [errors, setErrors] = useState({username: '', password: ''});
   const [disabled, setDisabled] = useState(true);
 

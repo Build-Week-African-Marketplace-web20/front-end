@@ -1,8 +1,18 @@
 import React from 'react'
 import { Toast, ToastBody, ToastHeader,Button } from 'reactstrap';
 import pic1 from '../assets/pic01.jpeg'
+import {useHistory} from 'react-router-dom'
 
 export const LandingPage = () => {
+
+
+    const history = useHistory();
+    const goToMarket = (e) => {
+        e.preventDefault();
+        history.push('/market')  }
+
+
+
     return(
     <>
     <h1>AFRICAN MARKETPLACE</h1>
@@ -40,10 +50,10 @@ export const LandingPage = () => {
 
     </div>
 
-<h5>Enter the Marketplace Now</h5>
-<Button className="bottomButton" color="primary" >Browse Store</Button>
-
-
+<footer>
+<Button onClick={goToMarket} className="bottomButton" color="warning" outline >Browse Marketplace</Button>
+<h2>Enter the Marketplace Now</h2>
+</footer>
 
     </>
         )

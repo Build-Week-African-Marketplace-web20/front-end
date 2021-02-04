@@ -10,22 +10,23 @@ import { getInventory, getOwners, getOwnerInventory, getItems } from '../../redu
 import { Table } from 'reactstrap';
 import  TempAddForm  from '../Forms/TempAddForm'
 
-export const Storefront = ({owners, siteInventory, getOwnerInventory, getOwners, getItems}) => {
+export const Storefront = ({owners, siteInventory, getOwnerInventory, getInventory}) => {
 
     
     useEffect(()=>{
-        getOwners()
-        getItems();
+        // getOwners()
+        getInventory();
         console.log("UE Fired, Storefront:", owners)
     }, [])
     
     
     return(
         <div className="storeFrontContainer">
-            {/* <TempAddForm /> */}
+            <button onClick={()=>getInventory()}>Get Items</button>
+            <button onClick={()=>console.log(siteInventory)}>Log</button>
             <h3>Available Items:</h3>
             <div className="storeSelectorContainer">
-                {}
+                
                 {owners && owners.map(
                     owner => (
                         <Button 
@@ -45,13 +46,14 @@ export const Storefront = ({owners, siteInventory, getOwnerInventory, getOwners,
                         </tr>
                     </thead>
                     <tbody>
-                    {siteInventory && siteInventory.map(
-                        item => (
-                            <tr>
-                            <th>{item.id}</th>
+                    { siteInventory && siteInventory.map(
+                        (item) => (
+                            <tr key={item.id}>
                             <th>{item.name}</th>
+                            <th>{item.owner}</th>
                             <th>${item.price}</th>
-                            <th>{item.description}</th>
+                            <th>{item.category}</th>
+                            <th>{item.location}</th>
                             </tr>)
                         )}
                     </tbody>
@@ -59,11 +61,7 @@ export const Storefront = ({owners, siteInventory, getOwnerInventory, getOwners,
                 </Table>
                 </div>
                 
-            {/* {owners && owners.map(
-                    owner => (
-                        
-                        <Store ownerInventory={siteInventory}/>
-                        ))} */}
+           
         </div>
     )
 }

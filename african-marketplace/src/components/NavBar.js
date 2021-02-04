@@ -22,7 +22,7 @@ export const NavBar = ({isLoading, getLogout}) => {
     
     const token = localStorage.getItem("token")
 
-
+  
 
 
     return(

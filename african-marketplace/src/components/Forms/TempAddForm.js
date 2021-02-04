@@ -9,15 +9,21 @@ import { connect, useDispatch } from 'react-redux'
 import {addItem} from '../../redux/actions/ownersActions'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-export const TempAddForm = ({addItem}) => {
 
+export const TempAddForm = ({owner, addItem}) => {
+    const thisOwner = owner
     const dispatch = useDispatch()
     const [form, setForm] = useState({
         name:"",
         price: "",
-        description: "",
-        // location: "",
+        // description: "",
+        category: "",
+        location: "",
+        users_id: thisOwner
         })
+
+       
+
 
 
     const handleChanges = (e) => {
@@ -27,20 +33,25 @@ export const TempAddForm = ({addItem}) => {
     }
     const handleSubmit = e => {
         e.preventDefault()
+        console.log(form)
         addItem(form)
         setForm({
             name:"",
             price: "",
-            description: "",
-            // location: "",
+            // description: "",
+            location: "",
+            category: "",
+            users_id: "",
         })
     }
+    
 
 
     return(
 
 <Form onSubmit={handleSubmit} className="addItemForm">
     <h3>Add Item</h3>
+    <Button onClick={()=>console.log("log: ",form.category)}>Log</Button>
     <Label>Product Name:</Label>
         <Input
             type="text"
@@ -57,21 +68,20 @@ export const TempAddForm = ({addItem}) => {
             onChange={handleChanges}
             placeholder='Price'/>
     
-    <Label>Description:</Label>
+    {/* <Label>Description:</Label>
         <Input
             type="text"
             name="description"
             value={form.description}
             onChange={handleChanges}
-            placeholder='Brief description'/>
+            placeholder='Brief description'/> */}
 
-    {/* <Label>Location:</Label>
+    <Label>Location:</Label>
         <Input
             type='select'
             name="location"
             value={form.location}
-            onChange={handleChanges}
-            placeholder="Select your city">
+            onChange={handleChanges}>
                 <option>City A</option>
                 <option>City B</option>
                 <option>City C</option>
@@ -80,8 +90,22 @@ export const TempAddForm = ({addItem}) => {
                 <option>City F</option>
                 <option>City G</option>
                 <option>City H</option>
-
-            </Input> */}
+            </Input>
+    <Label>Category:</Label>
+        <Input
+            type='select'
+            name="category"
+            value={form.category}
+            onChange={handleChanges}>
+                <option>Category A</option>
+                <option>Category B</option>
+                <option>Category C</option>
+                <option>Category D</option>
+                <option>Category E</option>
+                <option>Category F</option>
+                <option>Category G</option>
+                <option>Category H</option>
+            </Input>
     
     <Button color="primary">Add Item</Button>
 </Form>
@@ -91,7 +115,8 @@ export const TempAddForm = ({addItem}) => {
 }
 
 const mapStateToProps = state => {
-    return {state}
+    return {
+        owner: state.data.owner.id}
 }
 const mapDispatchToProps = {addItem}
 

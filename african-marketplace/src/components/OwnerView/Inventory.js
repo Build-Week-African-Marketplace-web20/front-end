@@ -3,16 +3,19 @@ import React, {useEffect, useState} from 'react'
 import StoreCard from '../Store/Storefront'
 import TempAddForm from '../Forms/TempAddForm'
 import OwnerItemCard from '../OwnerView/OwnerItemCard'
+import { connect } from 'react-redux'
+import {getOwnerInventory} from '../../redux/actions/ownersActions'
+
+
+
+
 export const Inventory = () => {
 
     const [inventoryList , setInventoryList] = useState([])
 
-    // get InventoryList of owner on mounting of component, set to state
-    const mockItem ={
-        name: "Pizza",
-        price: "1.99",
-        description: "1 slice, pepperoni"
-    }
+    useEffect(()=>{
+
+    },[])
 
     return(
     <>
@@ -31,4 +34,12 @@ export const Inventory = () => {
     </>
     )}
 
-export default Inventory;
+const mapStateToProps = (state) => {
+    return {
+        siteInventory: state.data.siteInventory,
+        ownerInventory: state.data.owner.inventory,
+    }
+}
+const mapDispatchToProps ={getOwnerInventory}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Inventory);
