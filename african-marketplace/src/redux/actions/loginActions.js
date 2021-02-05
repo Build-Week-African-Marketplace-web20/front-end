@@ -1,10 +1,12 @@
 import axios from 'axios'
 import {axiosWithAuth} from '../../utils/axiosWithAuth'
 
+
 export const LOGIN_START = "LOGIN_START"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const LOGIN_FAILURE = "LOGIN_FAILURE"
 
+export const LOGOUT = "LOGOUT"
 export const LOGOUT_START = "LOGOUT_START"
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS"
 export const LOGOUT_FAILURE = "LOGOUT_FAILURE"
@@ -54,18 +56,19 @@ export const getLogin = (form) => (dispatch) => {
 }
 //logout the user and remove token from localstorage
 export const getLogout = ()=>(dispatch) =>{
-    dispatch({type:LOGOUT_START})
-    axios.get('https://african-marketplace-backend.herokuapp.com/logout')
-        .then(res=>{
-            // console.log(res);
-            localStorage.removeItem("token")
-            dispatch({type:LOGOUT_SUCCESS, payload: res})
+    dispatch({type:LOGOUT})
+    localStorage.removeItem("token")
+    // axios.get('https://african-marketplace-backend.herokuapp.com/logout')
+    //     .then(res=>{
+    //         // console.log(res);
+    //         localStorage.removeItem("token")
+    //         dispatch({type:LOGOUT_SUCCESS, payload: res})
             
-        })
-        .catch(err=>{
-            console.log(err);
-            localStorage.removeItem("token")
-            dispatch({type:LOGOUT_FAILURE, payload: err})
+    //     })
+    //     .catch(err=>{
+    //         console.log(err);
+    //         localStorage.removeItem("token")
+    //         dispatch({type:LOGOUT_FAILURE, payload: err})
             
-        })
+    //     })
 }

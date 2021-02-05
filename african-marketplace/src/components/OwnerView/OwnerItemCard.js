@@ -20,6 +20,7 @@ export const OwnerItemCard = (props) => {
     }
     setCard(postEdit)
   }
+
   const [isEditing, setIsEditing] = useState(false);
     
     return(
@@ -30,11 +31,19 @@ export const OwnerItemCard = (props) => {
             <CardSubtitle tag="h6" className="mb-2 text-muted">{props.data.owner}</CardSubtitle>
           </CardHeader>
           
+
           <CardBody>
             <CardText>{props.data.price}</CardText>
             <CardText>Buy it here: {props.data.location}</CardText>
             <CardText>Category: {props.data.category}</CardText>
-            <Button color="primary" size="sm" outline onClick={()=>setIsEditing(!isEditing)}>Toggle Edit</Button>
+
+            <Button 
+              color="primary" 
+              size="sm" 
+              outline 
+              onClick={()=>setIsEditing(!isEditing)}>
+                Toggle Edit</Button>
+
             {(isEditing ? <TempEditForm data={props}/> : "")}
           </CardBody>
         </Card>

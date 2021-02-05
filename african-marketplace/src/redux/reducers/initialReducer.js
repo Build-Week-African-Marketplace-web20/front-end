@@ -2,12 +2,12 @@ import {
     GET_INVENTORY_START, GET_INVENTORY_SUCCESS, GET_INVENTORY_FAILURE, 
     GET_OWNERS_START, GET_OWNERS_SUCCESS, GET_OWNERS_FAILURE,
     GET_OWNERS_INVENTORY_START, GET_OWNERS_INVENTORY_SUCCESS, GET_OWNERS_INVENTORY_FAILURE,
-    GET_ITEMS_START, GET_ITEMS_SUCCESS, GET_ITEMS_FAILURE, 
+    
     ADD_ITEM_START, ADD_ITEM_SUCCESS, ADD_ITEM_FAILURE, EDIT_ITEM_START, EDIT_ITEM_SUCCESS, EDIT_ITEM_FAILURE
     } from '../actions/ownersActions'
 import {
     LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, 
-    LOGOUT_START, LOGOUT_SUCCESS, LOGOUT_FAILURE,
+    LOGOUT,
     CREATE_USER_SUCCESS, CREATE_USER_START, CREATE_USER_FAILURE
     } from '../actions/loginActions'
 import { Form } from 'reactstrap'
@@ -65,25 +65,11 @@ export const initialReducer = (state=initialState, action ) => {
                 error:{...state.error,
                     loginFailure: action.payload}
             }
-        case LOGOUT_START:
+        case LOGOUT:
             return{
                 ...state,
-                isLoading: true
-            }
-        case LOGOUT_SUCCESS:
-            return{
-                ...state,
-                isLoading: false,
-                isLoggedIn: false,  
-            }
-       
-        case LOGOUT_FAILURE:
-            return{
-                ...state,
-                isLoading: false,
-                isLoggedIn: false,
-                error:{...state.error,
-                    logoutFailure: action.payload}
+                isLoading: true,
+                isLoggedIn: false, 
             }
         case GET_OWNERS_START:
             return{

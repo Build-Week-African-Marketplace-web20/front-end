@@ -19,7 +19,7 @@ export const Inventory = ({ownerInventory, owner, siteInventory, getInventory, e
         // console.log("UE Fired - Inventory", siteInventory)
         getInventory();
         grabMyItems();
-    },[getInventory, editItem])
+    },[])
 
     const grabMyItems = () =>{
         // console.log(siteInventory)
@@ -47,26 +47,36 @@ export const Inventory = ({ownerInventory, owner, siteInventory, getInventory, e
             location: item.location,
             users_id: myOwner,
         }
-        console.log("before")
         await editItem(newItem)    
         getInventory();
         grabMyItems();
-        console.log("Yess")
     }
 
     return(
     <>
     <div className="myInventory">
-        <div className="myControls">
-            
+        <div className="myControls"> 
             <TempAddForm addToInventory={addToInventory}/></div>
         <div className="myItems">
-            {/* <button onClick={()=>console.log(siteInventory)}>Log</button> */}
+            
+            
+
+
+
+
+
             {siteInventory && siteInventory.map(
                 (item) => 
                     <OwnerItemCard key={item.id} data={item}  editToInventory={editToInventory}/>
                     )}
                 
+
+
+
+
+
+
+
             </div>
     </div>
     </>
