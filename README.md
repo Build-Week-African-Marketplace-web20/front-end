@@ -1,6 +1,8 @@
 # front-end
 Welcome to our African Marketplace Project.
 
+https://am-sethmac.netlify.app/
+
 State is handled via Redux.
 Reactstrap and Styled components were utilized in this project.
 
