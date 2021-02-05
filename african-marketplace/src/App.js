@@ -1,6 +1,6 @@
 import './App.css';
 import './form.css';
-import { Switch, Route } from 'react-router-dom';
+import {  Route } from 'react-router-dom';
 import NavBar from './components/NavBar'
 
 import LoginForm from './components/Forms/LoginForm';

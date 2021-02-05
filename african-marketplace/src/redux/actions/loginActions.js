@@ -1,4 +1,4 @@
-import axios from 'axios'
+
 import {axiosWithAuth} from '../../utils/axiosWithAuth'
 
 
@@ -17,9 +17,7 @@ export const CREATE_USER_FAILURE = "CREATE_USER_FAILURE"
 
 
 
-const headers = {
-    Accept: "application/json"
-}
+
 //create a new user on the database
 export const createUser = (form)=>(dispatch) => {
     // console.log("createUser Action fired", form)

@@ -25,10 +25,11 @@ export const EDIT_ITEM_START = "EDIT_ITEM_START"
 export const EDIT_ITEM_SUCCESS = "EDIT_ITEM_SUCCESS"
 export const EDIT_ITEM_FAILURE = "EDIT_ITEM_FAILURE"
 
-const headers = {
-    Accept: "application/json",
-    // Authorization: token
-}
+export const DELETE_ITEM_START = "DELETE_ITEM_START"
+export const DELETE_ITEM_SUCCESS = "DELETE_ITEM_SUCCESS"
+export const DELETE_ITEM_FAILURE = "DELETE_ITEM_FAILURE"
+
+
 
 //Grabs all items available on the website.
 export const getInventory = () => (dispatch) => {
@@ -106,7 +107,7 @@ export const editItem = (form) => (dispatch) => {
     axiosWithAuth().put(`/market/items/${form.id}`, form)
     // axios.put(`https://african-marketplace-backend.herokuapp.com/items/${id}`, id)
         .then(res=>{
-            return dispatch({type: EDIT_ITEM_SUCCESS}, form)
+            return dispatch({type: EDIT_ITEM_SUCCESS, payload: res})
      
         })
         .catch(err=>{
@@ -114,5 +115,18 @@ export const editItem = (form) => (dispatch) => {
             dispatch({type: EDIT_ITEM_FAILURE, payload: err.message})
         })
 }
+
+export const deleteItem = (id) => (dispatch) =>{
+    dispatch({type: DELETE_ITEM_START})
+    axiosWithAuth().delete(`/market/items/${id}`)
+        .then(res=>{
+            console.log(res)
+            dispatch({type:DELETE_ITEM_SUCCESS, payload: res})
+        })
+        .catch(err =>{
+            console.log(err)
+            dispatch({type:DELETE_ITEM_FAILURE, payload: err})
+        })
+} 
 
 

@@ -7,8 +7,8 @@
 import React, {useState} from 'react'
 import { connect, useDispatch } from 'react-redux'
 import {addItem} from '../../redux/actions/ownersActions'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import addToInventory from '../../components/OwnerView/Inventory'
+import { Button, Form, Label, Input} from 'reactstrap';
+
 
 
 export const TempAddForm = ({ addToInventory, owner, addItem}) => {
