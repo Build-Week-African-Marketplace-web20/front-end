@@ -4,13 +4,13 @@ import StoreCard from '../Store/Storefront'
 import TempAddForm from '../Forms/TempAddForm'
 import OwnerItemCard from '../OwnerView/OwnerItemCard'
 import { connect } from 'react-redux'
-import {getInventory, editItem, getOwnerInventory} from '../../redux/actions/ownersActions'
+import {getInventory, editItem, getOwnerInventory, deleteItem} from '../../redux/actions/ownersActions'
 
 
 
 
 
-export const Inventory = ({ownerInventory, getOwnerInventory, owner, siteInventory, getInventory, editItem}) => {
+export const Inventory = ({deleteItem,ownerInventory, getOwnerInventory, owner, siteInventory, getInventory, editItem}) => {
 
     const [inventoryList , setInventoryList] = useState([])
     const myOwner = owner
@@ -37,6 +37,7 @@ export const Inventory = ({ownerInventory, getOwnerInventory, owner, siteInvento
             location: item.location,
             users_id: myOwner,
         }
+        getOwnerInventory(myOwner)
         setInventoryList([...inventoryList, newItem])
     }
 
@@ -54,9 +55,9 @@ export const Inventory = ({ownerInventory, getOwnerInventory, owner, siteInvento
         // grabMyItems();
     }
 
-    const isOwner = (siteInventory) => {
-        return siteInventory.item.id === myOwner
-    }
+    // const isOwner = (siteInventory) => {
+    //     return siteInventory.item.id === myOwner
+    // }
      
 
     return(
@@ -71,8 +72,7 @@ export const Inventory = ({ownerInventory, getOwnerInventory, owner, siteInvento
 
                 {ownerInventory && ownerInventory.map(
                     (item) =>
-                     
-                        <OwnerItemCard key={item.id} data={item}  editToInventory={editToInventory}/>
+                        <OwnerItemCard key={item.id} data={item}  editToInventory={editToInventory} deleteItem={deleteItem} />
                         )}
             </div>
         </div>
@@ -87,6 +87,6 @@ const mapStateToProps = (state) => {
         owner: state.data.owner.id
     }
 }
-const mapDispatchToProps ={getInventory, editItem, getOwnerInventory}
+const mapDispatchToProps ={getInventory, editItem, getOwnerInventory, deleteItem}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inventory);
