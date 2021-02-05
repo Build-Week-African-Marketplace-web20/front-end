@@ -47,13 +47,16 @@ export const getInventory = () => (dispatch) => {
 }
 
 //Grabs all items from one owner
-export const getOwnerInventory = (id) => (dispatch) => {
+export const getOwnerInventory = (ownerId) => (dispatch) => {
     dispatch({type:GET_OWNERS_INVENTORY_START})
-    axiosWithAuth().get(`/market/items/${id}`, {headers:headers})
+    axiosWithAuth().get(`/market/items/`)
     // axios.get(`https://african-marketplace-backend.herokuapp.com/items/${id}`, { headers:headers } )
         .then(res=>{
-            // console.log("G.O.I. - Success - : ",res)
-            dispatch({type:GET_OWNERS_INVENTORY_SUCCESS, payload: res.data})
+            console.log("G.O.I. - Success - : ",res)
+            console.log("ownerId", ownerId)
+            const newData = res.data.filter(item => item.users_id === ownerId)
+            console.log("newData",newData)
+            dispatch({type:GET_OWNERS_INVENTORY_SUCCESS, payload: newData})
         })
         .catch(err => {
             console.log("G.O.I. - Failure - : ",err)
@@ -111,3 +114,5 @@ export const editItem = (form) => (dispatch) => {
             dispatch({type: EDIT_ITEM_FAILURE, payload: err.message})
         })
 }
+
+

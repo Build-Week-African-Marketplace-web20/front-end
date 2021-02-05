@@ -4,22 +4,24 @@ import StoreCard from '../Store/Storefront'
 import TempAddForm from '../Forms/TempAddForm'
 import OwnerItemCard from '../OwnerView/OwnerItemCard'
 import { connect } from 'react-redux'
-import {getInventory, editItem} from '../../redux/actions/ownersActions'
+import {getInventory, editItem, getOwnerInventory} from '../../redux/actions/ownersActions'
 
 
 
 
 
-export const Inventory = ({ownerInventory, owner, siteInventory, getInventory, editItem}) => {
+export const Inventory = ({ownerInventory, getOwnerInventory, owner, siteInventory, getInventory, editItem}) => {
 
     const [inventoryList , setInventoryList] = useState([])
     const myOwner = owner
+    console.log(myOwner, "ownerID")
     
     useEffect(()=>{
         // console.log("UE Fired - Inventory", siteInventory)
-        getInventory();
-        grabMyItems();
-    },[])
+        
+        getOwnerInventory(myOwner);
+        // grabMyItems();
+    },[getOwnerInventory])
 
     const grabMyItems = () =>{
         // console.log(siteInventory)
@@ -47,38 +49,33 @@ export const Inventory = ({ownerInventory, owner, siteInventory, getInventory, e
             location: item.location,
             users_id: myOwner,
         }
-        await editItem(newItem)    
-        getInventory();
-        grabMyItems();
+        editItem(newItem)    
+        getOwnerInventory(myOwner);
+        // grabMyItems();
     }
+
+    const isOwner = (siteInventory) => {
+        return siteInventory.item.id === myOwner
+    }
+     
 
     return(
     <>
-    <div className="myInventory">
-        <div className="myControls"> 
-            <TempAddForm addToInventory={addToInventory}/></div>
-        <div className="myItems">
+        <div className="myInventory">
+            <div className="myControls"> 
+                <TempAddForm addToInventory={addToInventory}/>
+                </div>
+            <div className="myItems">
+                {/* <button onClick={()=>getOwnerInventory(owner)}>Get Owner Inventory</button> */}
             
-            
 
-
-
-
-
-            {siteInventory && siteInventory.map(
-                (item) => 
-                    <OwnerItemCard key={item.id} data={item}  editToInventory={editToInventory}/>
-                    )}
-                
-
-
-
-
-
-
-
+                {ownerInventory && ownerInventory.map(
+                    (item) =>
+                     
+                        <OwnerItemCard key={item.id} data={item}  editToInventory={editToInventory}/>
+                        )}
             </div>
-    </div>
+        </div>
     </>
     )}
 
@@ -90,6 +87,6 @@ const mapStateToProps = (state) => {
         owner: state.data.owner.id
     }
 }
-const mapDispatchToProps ={getInventory, editItem}
+const mapDispatchToProps ={getInventory, editItem, getOwnerInventory}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inventory);
