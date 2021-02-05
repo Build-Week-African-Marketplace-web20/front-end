@@ -1,5 +1,5 @@
 //[ ] figure out logout path
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {Link, Route} from 'react-router-dom'
 import {

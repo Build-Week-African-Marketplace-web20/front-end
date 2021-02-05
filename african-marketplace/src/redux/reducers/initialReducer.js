@@ -10,7 +10,7 @@ import {
     LOGOUT,
     CREATE_USER_SUCCESS, CREATE_USER_START, CREATE_USER_FAILURE
     } from '../actions/loginActions'
-import { Form } from 'reactstrap'
+
 
 const initialState = {
     isLoading: false,
@@ -161,26 +161,26 @@ export const initialReducer = (state=initialState, action ) => {
           
             return{
                 ...state,
-                // isLoading: false,
-                // data:{...state.data,
+                isLoading: false,
+                data:{...state.data,
 
-                //     siteInventory: state.data.siteInventory.map(
-                //             (item) => {
-                //                 console.log(item.id, "===", action.payload.id)
-                //                 if(item.id === action.payload.id){
-                //             return {
-                //                 ...item,
-                //                 name:action.payload.name,
-                //                 price:action.payload.price,
-                //                 category:action.payload.category,
-                //                 location:action.payload.location,
-                //                 }
-                //             }
-                //             else{
-                //                 return {...item}
-                //             }
-                //         })
-                //     }
+                    siteInventory: state.data.siteInventory.map(
+                            (item) => {
+                                console.log(item.id, "===", action.payload.id)
+                                if(item.id === action.payload.id){
+                            return {
+                                ...item,
+                                name:action.payload.name,
+                                price:action.payload.price,
+                                category:action.payload.category,
+                                location:action.payload.location,
+                                }
+                            }
+                            else{
+                                return {item}
+                            }
+                        })
+                    }
                 }
 
         case EDIT_ITEM_FAILURE:

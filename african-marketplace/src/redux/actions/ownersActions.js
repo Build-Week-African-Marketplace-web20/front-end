@@ -29,10 +29,7 @@ export const DELETE_ITEM_START = "DELETE_ITEM_START"
 export const DELETE_ITEM_SUCCESS = "DELETE_ITEM_SUCCESS"
 export const DELETE_ITEM_FAILURE = "DELETE_ITEM_FAILURE"
 
-const headers = {
-    Accept: "application/json",
-    // Authorization: token
-}
+
 
 //Grabs all items available on the website.
 export const getInventory = () => (dispatch) => {

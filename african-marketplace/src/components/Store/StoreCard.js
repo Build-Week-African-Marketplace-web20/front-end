@@ -1,8 +1,8 @@
 //[ ] This component will display information from an array of items provided from the owner of the shop. 
 
 import React from 'react'
-import { Card, Button, CardHeader, CardFooter, CardBody,
-    CardTitle, CardText, CardSubtitle } from 'reactstrap';
+import { Card,  CardHeader, CardFooter, CardBody,
+    CardTitle,  CardSubtitle } from 'reactstrap';
 
 
 

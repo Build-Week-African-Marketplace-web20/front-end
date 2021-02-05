@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-import StoreCard from '../Store/Storefront'
+
 import TempAddForm from '../Forms/TempAddForm'
 import OwnerItemCard from '../OwnerView/OwnerItemCard'
 import { connect } from 'react-redux'
@@ -21,7 +21,7 @@ export const Inventory = ({deleteItem,ownerInventory, getOwnerInventory, owner, 
         
         getOwnerInventory(myOwner);
         // grabMyItems();
-    },[getOwnerInventory])
+    },[])
 
     const grabMyItems = () =>{
         // console.log(siteInventory)
@@ -50,7 +50,7 @@ export const Inventory = ({deleteItem,ownerInventory, getOwnerInventory, owner, 
             location: item.location,
             users_id: myOwner,
         }
-        editItem(newItem)    
+        await editItem(newItem)    
         getOwnerInventory(myOwner);
         // grabMyItems();
     }

@@ -2,13 +2,13 @@
 //and a list of filters available on the left hand side.
 
 
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {Button} from 'reactstrap'
-import Store from './Store'
+
 import { connect } from 'react-redux'
 import { getInventory, getOwners, getOwnerInventory, getItems } from '../../redux/actions/ownersActions'
 import { Table } from 'reactstrap';
-import  TempAddForm  from '../Forms/TempAddForm'
+
 
 export const Storefront = ({owners, siteInventory, getOwnerInventory, getInventory}) => {
 

@@ -7,19 +7,19 @@ import TempEditForm from '../Forms/TempEditForm'
 
 export const OwnerItemCard = (props) => {
 
-  const [card, setCard] = useState(props);
+  const [card, setCard] = useState(props.data);
   console.log('props', props)
 
-  const liftEditItem = (item) => {
-    const postEdit = {
-      name: item.name,
-      price: item.price,
-      category: item.category,
-      location: item.location,
-      users_id: item.users_id,
-    }
-    setCard(postEdit)
-  }
+  // const liftEditItem = (item) => {
+  //   const postEdit = {
+  //     name: item.name,
+  //     price: item.price,
+  //     category: item.category,
+  //     location: item.location,
+  //     users_id: item.users_id,
+  //   }
+  //   setCard(postEdit)
+  // }
 
   const [isEditing, setIsEditing] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -28,17 +28,17 @@ export const OwnerItemCard = (props) => {
     <div>
         <Card className="ownerCard">
           <CardHeader color="primary">
-            <CardTitle tag="h5">{props.data.name}</CardTitle>
-            <CardSubtitle tag="h6" className="mb-2 text-muted">{props.data.owner}</CardSubtitle>
+            <CardTitle tag="h5">{card.name}</CardTitle>
+            <CardSubtitle tag="h6" className="mb-2 text-muted">{card.owner}</CardSubtitle>
           </CardHeader>
             
           
 
           <CardBody>
-            <CardText>{props.data.price}</CardText>
+            <CardText>{card.price}</CardText>
            
-            <CardText>Buy it here: {props.data.location}</CardText>
-            <CardText>Category: {props.data.category}</CardText>
+            <CardText>Buy it here: {card.location}</CardText>
+            <CardText>Category: {card.category}</CardText>
             <Button 
               color="warning" 
               size="sm" 
