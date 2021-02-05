@@ -22,19 +22,10 @@ export const Storefront = ({owners, siteInventory, getOwnerInventory, getInvento
     
     return(
         <div className="storeFrontContainer">
-            {/* <button onClick={()=>getInventory()}>Get Items</button> */}
-            {/* <button onClick={()=>console.log(siteInventory)}>Log</button> */}
+            <button onClick={()=>getInventory()}>Get Items</button>
+            
             <h3>Available Items:</h3>
-            <div className="storeSelectorContainer">
-                
-                {owners && owners.map(
-                    owner => (
-                        <Button 
-                            key={owner.id}
-                            onClick={getOwnerInventory(owner.id)}>
-                            {owner.username}</Button>
-                        ))}
-                </div>
+           
                 <div className="marketplace">
                 <Table striped bordered hover >
                     <thead>

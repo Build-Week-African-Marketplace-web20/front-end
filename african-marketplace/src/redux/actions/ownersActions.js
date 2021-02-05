@@ -107,7 +107,7 @@ export const editItem = (form) => (dispatch) => {
     axiosWithAuth().put(`/market/items/${form.id}`, form)
     // axios.put(`https://african-marketplace-backend.herokuapp.com/items/${id}`, id)
         .then(res=>{
-            return dispatch({type: EDIT_ITEM_SUCCESS}, form)
+            return dispatch({type: EDIT_ITEM_SUCCESS, payload: res})
      
         })
         .catch(err=>{

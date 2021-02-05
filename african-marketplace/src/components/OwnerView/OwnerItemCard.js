@@ -9,6 +9,7 @@ export const OwnerItemCard = (props) => {
 
   const [card, setCard] = useState(props.data);
   console.log('props', props)
+  console.log('props2', props.data.id)
 
   // const liftEditItem = (item) => {
   //   const postEdit = {
@@ -51,13 +52,13 @@ export const OwnerItemCard = (props) => {
                 color="danger" 
                 size="sm" 
                 outline 
-                onClick={()=>props.deleteItem(props.data.id)}>
+                onClick={()=>props.deleteToInventory(card.id)}>
                   Remove</Button> 
                   <Button 
                   color="info" 
                   size="sm" 
                   outline 
-                  onClick={()=>props.deleteItem(props.data.id)}>
+                  onClick={()=>setIsDeleting(false)}>
                     Cancel</Button> 
                     </div>
                   : 

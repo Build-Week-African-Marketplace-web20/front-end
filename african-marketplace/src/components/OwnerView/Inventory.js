@@ -18,7 +18,7 @@ export const Inventory = ({deleteItem,ownerInventory, getOwnerInventory, owner, 
     
     useEffect(()=>{
         // console.log("UE Fired - Inventory", siteInventory)
-        
+        getInventory();
         getOwnerInventory(myOwner);
         // grabMyItems();
     },[])
@@ -29,7 +29,7 @@ export const Inventory = ({deleteItem,ownerInventory, getOwnerInventory, owner, 
         setInventoryList(myItems);
     }
 
-    const addToInventory = (item) => {
+    const addToInventory = async (item) => {
         const newItem = {
             name: item.name,
             price: item.price,
@@ -37,7 +37,7 @@ export const Inventory = ({deleteItem,ownerInventory, getOwnerInventory, owner, 
             location: item.location,
             users_id: myOwner,
         }
-        getOwnerInventory(myOwner)
+        await getOwnerInventory(myOwner)
         setInventoryList([...inventoryList, newItem])
     }
 
@@ -50,9 +50,18 @@ export const Inventory = ({deleteItem,ownerInventory, getOwnerInventory, owner, 
             location: item.location,
             users_id: myOwner,
         }
-        await editItem(newItem)    
-        getOwnerInventory(myOwner);
+        editItem(newItem)    
+         await getOwnerInventory(myOwner);
         // grabMyItems();
+    }
+
+    const deleteToInventory = async (item) => {
+        const delItem = {
+            id: item
+        }
+        deleteItem(delItem.id)
+        await getOwnerInventory(myOwner)
+
     }
 
     // const isOwner = (siteInventory) => {
@@ -72,7 +81,7 @@ export const Inventory = ({deleteItem,ownerInventory, getOwnerInventory, owner, 
 
                 {ownerInventory && ownerInventory.map(
                     (item) =>
-                        <OwnerItemCard key={item.id} data={item}  editToInventory={editToInventory} deleteItem={deleteItem} />
+                        <OwnerItemCard key={item.id} data={item}  editToInventory={editToInventory} deleteToInventory={deleteToInventory} />
                         )}
             </div>
         </div>

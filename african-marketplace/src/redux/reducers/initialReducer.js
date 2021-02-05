@@ -162,22 +162,20 @@ export const initialReducer = (state=initialState, action ) => {
             return{
                 ...state,
                 isLoading: false,
-                data:{...state.data,
-
+                data:{...state.data, 
                     siteInventory: state.data.siteInventory.map(
                             (item) => {
                                 console.log(item.id, "===", action.payload.id)
                                 if(item.id === action.payload.id){
-                            return {
-                                ...item,
-                                name:action.payload.name,
-                                price:action.payload.price,
-                                category:action.payload.category,
-                                location:action.payload.location,
-                                }
-                            }
-                            else{
-                                return {item}
+                                    return {
+                                        name:action.payload.name,
+                                        price:action.payload.price,
+                                        category:action.payload.category,
+                                        location:action.payload.location,
+                                        }
+                                    }
+                                else{
+                                    return {item}
                             }
                         })
                     }
