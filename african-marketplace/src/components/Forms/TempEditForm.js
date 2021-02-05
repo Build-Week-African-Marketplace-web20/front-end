@@ -1,33 +1,54 @@
 import React, {useState} from 'react'
-import { connect, useDispatch } from 'react-redux'
-import {editItem} from '../../redux/actions/ownersActions'
+import {useDispatch, connect} from 'react-redux'
+// import {editInventory} from '../../redux/actions/ownersActions'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-export const TempEditForm = ({owner,editItem}) => {
-    const thisOwner = owner;
+export const TempEditForm = (props,{owner}) => {
+    // const thisOwner = owner;
+    const thisItem = props.data.data;
+    // console.log(thisItem.id)
+
+    // console.log('Editable Item', props.data.data)
+    // console.log('All EditForm Props', props)
+
+    // console.log(data)
+
     const dispatch = useDispatch()
     const [form, setForm] = useState({
-        name:"",
-        price: "",
-        category: "",
-        location: "",
-        users_id: thisOwner
+        // name:"",
+        // price: "",
+        // category: "",
+        // location: "",
+        // users_id: ""
+        id: thisItem.id,
+        name:thisItem.name,
+        price: thisItem.price,
+        category: thisItem.category,
+        location: thisItem.location,
+        users_id: thisItem.users_id
         })
+
+        // { "name": "Here", <-- String
+        // "price": "0.00$", <-- String
+        //  "category": "Here", <-- String 
+        //  "location": "Here", <-- String 
+        //  "users_id": 123 <-- Integer }
 
 
     const handleChanges = (e) => {
+        console.log(e);
         setForm({...form,
             [e.target.name]:e.target.value
         })
     }
     const handleSubmit = e => {
         e.preventDefault()
-        editItem(form)
-        setForm({
-            name:"",
-            price: "",
-            description: "",
-        })
+        props.data.editToInventory(form)
+        // setForm({
+        //     name:"",
+        //     price: "",
+        //     description: "",
+        // })
     }
 
 
@@ -49,12 +70,12 @@ export const TempEditForm = ({owner,editItem}) => {
             placeholder='Price'/>
     
 
-        <Input
+        {/* <Input
             type="text"
             name="description"
             value={form.description}
             onChange={handleChanges}
-            placeholder='Brief description'/>
+            placeholder='Brief description'/> */}
 
 
         <Input
@@ -97,11 +118,14 @@ export const TempEditForm = ({owner,editItem}) => {
     )
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+    
     return {
+        data : ownProps.data,
         owner: state.data.owner
     }
 }
-const mapDispatchToProps = {editItem}
+// const mapDispatchToProps = {editInventory}
 
-export default connect (mapStateToProps, mapDispatchToProps) (TempEditForm)
+export default connect (mapStateToProps, {}) (TempEditForm)
+// export default TempEditForm;

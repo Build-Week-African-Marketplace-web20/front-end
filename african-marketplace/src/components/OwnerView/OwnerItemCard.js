@@ -7,8 +7,21 @@ import TempEditForm from '../Forms/TempEditForm'
 
 export const OwnerItemCard = (props) => {
 
+  const [card, setCard] = useState(props);
+  // console.log('card', card)
+
+  const liftEditItem = (item) => {
+    const postEdit = {
+      name: item.name,
+      price: item.price,
+      category: item.category,
+      location: item.location,
+      users_id: item.users_id,
+    }
+    setCard(postEdit)
+  }
   const [isEditing, setIsEditing] = useState(false);
-    console.log(props)
+    
     return(
     <div>
         <Card className="ownerCard">
@@ -22,7 +35,7 @@ export const OwnerItemCard = (props) => {
             <CardText>Buy it here: {props.data.location}</CardText>
             <CardText>Category: {props.data.category}</CardText>
             <Button color="primary" size="sm" outline onClick={()=>setIsEditing(!isEditing)}>Toggle Edit</Button>
-            {(isEditing ? <TempEditForm/> : "")}
+            {(isEditing ? <TempEditForm data={props}/> : "")}
           </CardBody>
         </Card>
       </div>

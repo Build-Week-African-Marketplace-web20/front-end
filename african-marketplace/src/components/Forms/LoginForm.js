@@ -38,7 +38,7 @@ const schema = yup.object().shape({
   const submit = (event) => {
     event.preventDefault();
     getLogin(form);
-    history.push("/market")
+    history.push("/inventory")
     // axios.post("/", form);
   };
 

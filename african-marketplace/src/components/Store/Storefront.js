@@ -16,7 +16,7 @@ export const Storefront = ({owners, siteInventory, getOwnerInventory, getInvento
     useEffect(()=>{
         // getOwners()
         getInventory();
-        console.log("UE Fired, Storefront:", owners)
+        // console.log("UE Fired, Storefront:", owners)
     }, [])
     
     

@@ -8,9 +8,10 @@ import React, {useState} from 'react'
 import { connect, useDispatch } from 'react-redux'
 import {addItem} from '../../redux/actions/ownersActions'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import addToInventory from '../../components/OwnerView/Inventory'
 
 
-export const TempAddForm = ({owner, addItem}) => {
+export const TempAddForm = ({ addToInventory, owner, addItem}) => {
     const thisOwner = owner
     const dispatch = useDispatch()
     const [form, setForm] = useState({
@@ -33,8 +34,11 @@ export const TempAddForm = ({owner, addItem}) => {
     }
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(form)
+        // console.log(form)
+        // Axios add to DB
         addItem(form)
+        //lift state to inventory
+        addToInventory(form)
         setForm({
             name:"",
             price: "",

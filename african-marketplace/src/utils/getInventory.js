@@ -10,7 +10,7 @@ export const getInventory = (id) => (dispatch)=> {
     return axiosWithAuth().get(`/api/users?/page=${id}`)
         
         .then( res => {
-            console.log('getInv: res',res)
+            // console.log('getInv: res',res)
             dispatch({type: GET_INVENTORY_SUCCESS, payload: res})
         })
         .catch( err => {

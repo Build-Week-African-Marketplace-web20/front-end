@@ -3,13 +3,14 @@ import {
     GET_OWNERS_START, GET_OWNERS_SUCCESS, GET_OWNERS_FAILURE,
     GET_OWNERS_INVENTORY_START, GET_OWNERS_INVENTORY_SUCCESS, GET_OWNERS_INVENTORY_FAILURE,
     GET_ITEMS_START, GET_ITEMS_SUCCESS, GET_ITEMS_FAILURE, 
-    ADD_ITEM_START, ADD_ITEM_SUCCESS, ADD_ITEM_FAILURE
+    ADD_ITEM_START, ADD_ITEM_SUCCESS, ADD_ITEM_FAILURE, EDIT_ITEM_START, EDIT_ITEM_SUCCESS, EDIT_ITEM_FAILURE
     } from '../actions/ownersActions'
 import {
     LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, 
     LOGOUT_START, LOGOUT_SUCCESS, LOGOUT_FAILURE,
     CREATE_USER_SUCCESS, CREATE_USER_START, CREATE_USER_FAILURE
     } from '../actions/loginActions'
+import { Form } from 'reactstrap'
 
 const initialState = {
     isLoading: false,
@@ -165,6 +166,39 @@ export const initialReducer = (state=initialState, action ) => {
                 error:{...state.error,
                     itemFailure: action.payload}
             }
+        case EDIT_ITEM_START:
+            return{
+                ...state,
+                isLoading: true,
+            }
+        case EDIT_ITEM_SUCCESS:
+          
+            return{
+                ...state,
+                // isLoading: false,
+                // data:{...state.data,
+
+                //     siteInventory: state.data.siteInventory.map(
+                //             (item) => {
+                //                 console.log(item.id, "===", action.payload.id)
+                //                 if(item.id === action.payload.id){
+                //             return {
+                //                 ...item,
+                //                 name:action.payload.name,
+                //                 price:action.payload.price,
+                //                 category:action.payload.category,
+                //                 location:action.payload.location,
+                //                 }
+                //             }
+                //             else{
+                //                 return {...item}
+                //             }
+                //         })
+                //     }
+                }
+
+        case EDIT_ITEM_FAILURE:
+            return{}
 
         default:
             return state

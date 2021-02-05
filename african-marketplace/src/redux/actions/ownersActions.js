@@ -52,7 +52,7 @@ export const getOwnerInventory = (id) => (dispatch) => {
     axiosWithAuth().get(`/market/items/${id}`, {headers:headers})
     // axios.get(`https://african-marketplace-backend.herokuapp.com/items/${id}`, { headers:headers } )
         .then(res=>{
-            console.log("G.O.I. - Success - : ",res)
+            // console.log("G.O.I. - Success - : ",res)
             dispatch({type:GET_OWNERS_INVENTORY_SUCCESS, payload: res.data})
         })
         .catch(err => {
@@ -97,13 +97,14 @@ export const addItem = (form) => (dispatch) => {
         })
 }
 
-export const editItem = (id) => (dispatch) => {
+export const editItem = (form) => (dispatch) => {
     dispatch({type: EDIT_ITEM_START})
-    axiosWithAuth().put(`/market/items/${id}`, id)
-    axios.put(`https://african-marketplace-backend.herokuapp.com/items/${id}`, id)
+        // console.log("action item", form)
+    axiosWithAuth().put(`/market/items/${form.id}`, form)
+    // axios.put(`https://african-marketplace-backend.herokuapp.com/items/${id}`, id)
         .then(res=>{
-            console.log(res);
-            dispatch({type: EDIT_ITEM_SUCCESS, payload: res.data})
+            return dispatch({type: EDIT_ITEM_SUCCESS}, form)
+     
         })
         .catch(err=>{
             console.log(err)
