@@ -4,42 +4,89 @@ import StoreCard from '../Store/Storefront'
 import TempAddForm from '../Forms/TempAddForm'
 import OwnerItemCard from '../OwnerView/OwnerItemCard'
 import { connect } from 'react-redux'
-import {getOwnerInventory} from '../../redux/actions/ownersActions'
+import {getInventory, editItem, getOwnerInventory} from '../../redux/actions/ownersActions'
 
 
 
 
-export const Inventory = () => {
+
+export const Inventory = ({ownerInventory, getOwnerInventory, owner, siteInventory, getInventory, editItem}) => {
 
     const [inventoryList , setInventoryList] = useState([])
-
+    const myOwner = owner
+    console.log(myOwner, "ownerID")
+    
     useEffect(()=>{
+        // console.log("UE Fired - Inventory", siteInventory)
+        
+        getOwnerInventory(myOwner);
+        // grabMyItems();
+    },[getOwnerInventory])
 
-    },[])
+    const grabMyItems = () =>{
+        // console.log(siteInventory)
+        const myItems = siteInventory.filter(item => item.users_id === myOwner ) 
+        setInventoryList(myItems);
+    }
+
+    const addToInventory = (item) => {
+        const newItem = {
+            name: item.name,
+            price: item.price,
+            category: item.category,
+            location: item.location,
+            users_id: myOwner,
+        }
+        setInventoryList([...inventoryList, newItem])
+    }
+
+    const editToInventory = async (item) => {
+        const newItem = {
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            category: item.category,
+            location: item.location,
+            users_id: myOwner,
+        }
+        editItem(newItem)    
+        getOwnerInventory(myOwner);
+        // grabMyItems();
+    }
+
+    const isOwner = (siteInventory) => {
+        return siteInventory.item.id === myOwner
+    }
+     
 
     return(
     <>
-    <div className="myInventory">
-        <div className="myControls">
+        <div className="myInventory">
+            <div className="myControls"> 
+                <TempAddForm addToInventory={addToInventory}/>
+                </div>
+            <div className="myItems">
+                {/* <button onClick={()=>getOwnerInventory(owner)}>Get Owner Inventory</button> */}
             
-            <TempAddForm /></div>
-        <div className="myItems">
-            <OwnerItemCard  />
-            <OwnerItemCard  />
-            <OwnerItemCard  />
-            <OwnerItemCard  />
-            <OwnerItemCard  />
+
+                {ownerInventory && ownerInventory.map(
+                    (item) =>
+                     
+                        <OwnerItemCard key={item.id} data={item}  editToInventory={editToInventory}/>
+                        )}
             </div>
-    </div>
+        </div>
     </>
     )}
 
 const mapStateToProps = (state) => {
+    console.log({state})
     return {
         siteInventory: state.data.siteInventory,
         ownerInventory: state.data.owner.inventory,
+        owner: state.data.owner.id
     }
 }
-const mapDispatchToProps ={getOwnerInventory}
+const mapDispatchToProps ={getInventory, editItem, getOwnerInventory}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Inventory);

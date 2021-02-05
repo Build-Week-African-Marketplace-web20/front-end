@@ -16,14 +16,14 @@ export const Storefront = ({owners, siteInventory, getOwnerInventory, getInvento
     useEffect(()=>{
         // getOwners()
         getInventory();
-        console.log("UE Fired, Storefront:", owners)
+        // console.log("UE Fired, Storefront:", owners)
     }, [])
     
     
     return(
         <div className="storeFrontContainer">
-            <button onClick={()=>getInventory()}>Get Items</button>
-            <button onClick={()=>console.log(siteInventory)}>Log</button>
+            {/* <button onClick={()=>getInventory()}>Get Items</button> */}
+            {/* <button onClick={()=>console.log(siteInventory)}>Log</button> */}
             <h3>Available Items:</h3>
             <div className="storeSelectorContainer">
                 
@@ -42,19 +42,24 @@ export const Storefront = ({owners, siteInventory, getOwnerInventory, getInvento
                             <th>ID</th>
                             <th>Product Name</th>
                             <th>Price</th>
-                            <th>Description</th>
+                            <th>Category</th>
+                            <th>Location</th>
+                            <th>Seller</th>
                         </tr>
                     </thead>
                     <tbody>
                     { siteInventory && siteInventory.map(
                         (item) => (
+                            
                             <tr key={item.id}>
-                            <th>{item.name}</th>
-                            <th>{item.owner}</th>
-                            <th>${item.price}</th>
-                            <th>{item.category}</th>
-                            <th>{item.location}</th>
-                            </tr>)
+                                <th>{item.id}</th>
+                                <th>{item.name}</th>
+                                <th>${item.price}</th>
+                                <th>{item.category}</th>
+                                <th>{item.location}</th>
+                                <th>{item.owner}</th>
+                            </tr>
+                            )
                         )}
                     </tbody>
                 

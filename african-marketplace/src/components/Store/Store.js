@@ -73,14 +73,14 @@ const mockupData = [
     
     ]
 
-console.log(mockupData)
+// console.log(mockupData)
 
 
 //This component is not connected to redux.
 export const Store = (props) => {
     
     const [shownInventory, setShownInventory] = useState()
-    console.log(props)
+    // console.log(props)
 
 
     return(

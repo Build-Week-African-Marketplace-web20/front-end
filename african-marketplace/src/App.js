@@ -7,6 +7,7 @@ import LoginForm from './components/Forms/LoginForm';
 import RegisterForm from './components/Forms/RegisterForm';
 import TempAddForm from './components/Forms/TempAddForm'
 
+import PrivateRoute from './components/PrivateRoute'
 import Storefront from './components/Store/Storefront'
 import Inventory from './components/OwnerView/Inventory'
 import LandingPage from './components/LandingPage'
@@ -25,7 +26,7 @@ function App() {
           <Route path="/login" component={LoginForm}/>
           <Route path="/register" component={RegisterForm}/>
 
-          <Route exact path='/inventory' component={Inventory}/>
+          <PrivateRoute exact path='/inventory' component={Inventory}/>
           <Route path='/addItem' component={TempAddForm}/>
       
         {/* </header>  */}

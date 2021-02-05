@@ -78,14 +78,17 @@ footer{
 .inventoryItems{
   display: flex;
   flex-flow: column wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 .myInventory{
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: left;
   margin-top: 50px;
   
+}
+.myControls{
+  width: 25%;
 }
 .myItems{
   display: flex;

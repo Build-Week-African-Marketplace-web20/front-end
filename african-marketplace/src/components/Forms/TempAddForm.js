@@ -8,9 +8,10 @@ import React, {useState} from 'react'
 import { connect, useDispatch } from 'react-redux'
 import {addItem} from '../../redux/actions/ownersActions'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import addToInventory from '../../components/OwnerView/Inventory'
 
 
-export const TempAddForm = ({owner, addItem}) => {
+export const TempAddForm = ({ addToInventory, owner, addItem}) => {
     const thisOwner = owner
     const dispatch = useDispatch()
     const [form, setForm] = useState({
@@ -33,8 +34,11 @@ export const TempAddForm = ({owner, addItem}) => {
     }
     const handleSubmit = e => {
         e.preventDefault()
-        console.log(form)
+        // console.log(form)
+        // Axios add to DB
         addItem(form)
+        //lift state to inventory
+        addToInventory(form)
         setForm({
             name:"",
             price: "",
@@ -82,14 +86,14 @@ export const TempAddForm = ({owner, addItem}) => {
             name="location"
             value={form.location}
             onChange={handleChanges}>
-                <option>City A</option>
-                <option>City B</option>
-                <option>City C</option>
-                <option>City D</option>
-                <option>City E</option>
-                <option>City F</option>
-                <option>City G</option>
-                <option>City H</option>
+                <option>Nigeria</option>
+                <option>Ethiopia</option>
+                <option>Egypt</option>
+                <option>DR Congo</option>
+                <option>Tanzania</option>
+                <option>Kenya</option>
+                <option>Uganda</option>
+                <option>Other</option>
             </Input>
     <Label>Category:</Label>
         <Input
@@ -97,14 +101,14 @@ export const TempAddForm = ({owner, addItem}) => {
             name="category"
             value={form.category}
             onChange={handleChanges}>
-                <option>Category A</option>
-                <option>Category B</option>
-                <option>Category C</option>
-                <option>Category D</option>
-                <option>Category E</option>
-                <option>Category F</option>
-                <option>Category G</option>
-                <option>Category H</option>
+                <option>Animal Products</option>
+                <option>Beans</option>
+                <option>Cereals</option>
+                <option>Fruits</option>
+                <option>Pasta</option>
+                <option>Roots & Tubers</option>
+                <option>Seeds & Nuts</option>
+                <option>Other</option>
             </Input>
     
     <Button color="primary">Add Item</Button>

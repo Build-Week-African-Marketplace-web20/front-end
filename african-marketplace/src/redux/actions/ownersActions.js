@@ -47,16 +47,20 @@ export const getInventory = () => (dispatch) => {
 }
 
 //Grabs all items from one owner
-export const getOwnerInventory = (id) => (dispatch) => {
-    dispatch({type:GET_INVENTORY_START})
-    axios.get(`https://african-marketplace-backend.herokuapp.com/items/${id}`, { headers:headers } )
+export const getOwnerInventory = (ownerId) => (dispatch) => {
+    dispatch({type:GET_OWNERS_INVENTORY_START})
+    axiosWithAuth().get(`/market/items/`)
+    // axios.get(`https://african-marketplace-backend.herokuapp.com/items/${id}`, { headers:headers } )
         .then(res=>{
             console.log("G.O.I. - Success - : ",res)
-            dispatch({type:GET_INVENTORY_SUCCESS, payload: res.data})
+            console.log("ownerId", ownerId)
+            const newData = res.data.filter(item => item.users_id === ownerId)
+            console.log("newData",newData)
+            dispatch({type:GET_OWNERS_INVENTORY_SUCCESS, payload: newData})
         })
         .catch(err => {
             console.log("G.O.I. - Failure - : ",err)
-            dispatch({type: GET_INVENTORY_FAILURE, payload: err})
+            dispatch({type: GET_OWNERS_INVENTORY_FAILURE, payload: err})
         })
 }
 //Grabs all owners on the site
@@ -96,16 +100,19 @@ export const addItem = (form) => (dispatch) => {
         })
 }
 
-export const editItem = (id) => (dispatch) => {
+export const editItem = (form) => (dispatch) => {
     dispatch({type: EDIT_ITEM_START})
-    axiosWithAuth().put(`/market/items/${id}`, id)
-    axios.put(`https://african-marketplace-backend.herokuapp.com/items/${id}`, id)
+        // console.log("action item", form)
+    axiosWithAuth().put(`/market/items/${form.id}`, form)
+    // axios.put(`https://african-marketplace-backend.herokuapp.com/items/${id}`, id)
         .then(res=>{
-            console.log(res);
-            dispatch({type: EDIT_ITEM_SUCCESS, payload: res.data})
+            return dispatch({type: EDIT_ITEM_SUCCESS}, form)
+     
         })
         .catch(err=>{
             console.log(err)
             dispatch({type: EDIT_ITEM_FAILURE, payload: err.message})
         })
 }
+
+

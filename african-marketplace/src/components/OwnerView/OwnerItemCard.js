@@ -1,27 +1,50 @@
 import React, {useState} from 'react'
 import {
     Card, CardText, CardBody, Button,
-    CardTitle, CardSubtitle
+    CardTitle, CardSubtitle, CardHeader
   } from 'reactstrap';
 import TempEditForm from '../Forms/TempEditForm'
 
 export const OwnerItemCard = (props) => {
 
-  const [isEditing, setIsEditing] = useState(false);
+  const [card, setCard] = useState(props);
+  // console.log('card', card)
 
+  const liftEditItem = (item) => {
+    const postEdit = {
+      name: item.name,
+      price: item.price,
+      category: item.category,
+      location: item.location,
+      users_id: item.users_id,
+    }
+    setCard(postEdit)
+  }
+
+  const [isEditing, setIsEditing] = useState(false);
+    
     return(
     <div>
         <Card className="ownerCard">
-          <CardBody>
-            <CardTitle tag="h5">Product Name</CardTitle>
-            <CardSubtitle tag="h6" className="mb-2 text-muted">Maybe price</CardSubtitle>
-          </CardBody>
+          <CardHeader color="primary">
+            <CardTitle tag="h5">{props.data.name}</CardTitle>
+            <CardSubtitle tag="h6" className="mb-2 text-muted">{props.data.owner}</CardSubtitle>
+          </CardHeader>
           
+
           <CardBody>
-            <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-            
-            <Button color="primary" size="sm" outline onClick={()=>setIsEditing(!isEditing)}>Toggle Edit</Button>
-            {(isEditing ? <TempEditForm/> : "")}
+            <CardText>{props.data.price}</CardText>
+            <CardText>Buy it here: {props.data.location}</CardText>
+            <CardText>Category: {props.data.category}</CardText>
+
+            <Button 
+              color="primary" 
+              size="sm" 
+              outline 
+              onClick={()=>setIsEditing(!isEditing)}>
+                Toggle Edit</Button>
+
+            {(isEditing ? <TempEditForm data={props}/> : "")}
           </CardBody>
         </Card>
       </div>

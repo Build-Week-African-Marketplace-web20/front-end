@@ -2,14 +2,15 @@ import {
     GET_INVENTORY_START, GET_INVENTORY_SUCCESS, GET_INVENTORY_FAILURE, 
     GET_OWNERS_START, GET_OWNERS_SUCCESS, GET_OWNERS_FAILURE,
     GET_OWNERS_INVENTORY_START, GET_OWNERS_INVENTORY_SUCCESS, GET_OWNERS_INVENTORY_FAILURE,
-    GET_ITEMS_START, GET_ITEMS_SUCCESS, GET_ITEMS_FAILURE, 
-    ADD_ITEM_START, ADD_ITEM_SUCCESS, ADD_ITEM_FAILURE
+    
+    ADD_ITEM_START, ADD_ITEM_SUCCESS, ADD_ITEM_FAILURE, EDIT_ITEM_START, EDIT_ITEM_SUCCESS, EDIT_ITEM_FAILURE
     } from '../actions/ownersActions'
 import {
     LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, 
-    LOGOUT_START, LOGOUT_SUCCESS, LOGOUT_FAILURE,
+    LOGOUT,
     CREATE_USER_SUCCESS, CREATE_USER_START, CREATE_USER_FAILURE
     } from '../actions/loginActions'
+import { Form } from 'reactstrap'
 
 const initialState = {
     isLoading: false,
@@ -39,7 +40,9 @@ export const initialReducer = (state=initialState, action ) => {
         case CREATE_USER_FAILURE:
                 return{
                     ...state,
-                isLoading: false
+                isLoading: false,
+                error:{...state.error,
+                    userFailure: action.payload}
             }
         case LOGIN_START:
             return{
@@ -59,26 +62,14 @@ export const initialReducer = (state=initialState, action ) => {
             return{
                 ...state,
                 isLoading: false,
-                error:action.payload
+                error:{...state.error,
+                    loginFailure: action.payload}
             }
-        case LOGOUT_START:
+        case LOGOUT:
             return{
                 ...state,
-                isLoading: true
-            }
-        case LOGOUT_SUCCESS:
-            return{
-                ...state,
-                isLoading: false,
-                isLoggedIn: false,  
-            }
-       
-        case LOGOUT_FAILURE:
-            return{
-                ...state,
-                isLoading: false,
-                isLoggedIn: false,
-                error:action.payload
+                isLoading: true,
+                isLoggedIn: false, 
             }
         case GET_OWNERS_START:
             return{
@@ -96,7 +87,8 @@ export const initialReducer = (state=initialState, action ) => {
             return{
                 ...state,
                 isLoading: false,
-                error: action.payload
+                error:{...state.error,
+                    ownersFailure: action.payload}
             }
         case GET_INVENTORY_START:
             return{
@@ -115,7 +107,8 @@ export const initialReducer = (state=initialState, action ) => {
             return{
                 ...state,
                 isLoading: false,
-                error:action.payload
+                error:{...state.error,
+                    inventoryFailure: action.payload}
             }
         case GET_OWNERS_INVENTORY_START:
             return {
@@ -136,7 +129,8 @@ export const initialReducer = (state=initialState, action ) => {
             return{
                 ...state,
                 isLoading: false,
-                error: action.payload
+                error:{...state.error,
+                    ownerInventoryFailure: action.payload}
             }
         case ADD_ITEM_START:
             return{
@@ -148,18 +142,49 @@ export const initialReducer = (state=initialState, action ) => {
                 ...state,
                 isLoading: false,
                 data:{...state.data,
-                    owner:{...state.data.owner,
-                        inventory:[...state.data.owner.inventory,
-                            action.payload]
-                        }
-                    }
+                    siteInventory: state.data.siteInventory.concat(action.payload)
+                }
             }
         case ADD_ITEM_FAILURE:
             return{
                 ...state,
                 isLoading: false,
-                error: action.payload
+                error:{...state.error,
+                    itemFailure: action.payload}
             }
+        case EDIT_ITEM_START:
+            return{
+                ...state,
+                isLoading: true,
+            }
+        case EDIT_ITEM_SUCCESS:
+          
+            return{
+                ...state,
+                // isLoading: false,
+                // data:{...state.data,
+
+                //     siteInventory: state.data.siteInventory.map(
+                //             (item) => {
+                //                 console.log(item.id, "===", action.payload.id)
+                //                 if(item.id === action.payload.id){
+                //             return {
+                //                 ...item,
+                //                 name:action.payload.name,
+                //                 price:action.payload.price,
+                //                 category:action.payload.category,
+                //                 location:action.payload.location,
+                //                 }
+                //             }
+                //             else{
+                //                 return {...item}
+                //             }
+                //         })
+                //     }
+                }
+
+        case EDIT_ITEM_FAILURE:
+            return{}
 
         default:
             return state
